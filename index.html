@@ -19,17 +19,18 @@
                     },
                     colors: {
                         brand: {
-                            dark: '#1e1b4b',     
-                            main: '#6366f1',     
-                            light: '#e0e7ff',    
-                            text: '#1f2937',     
-                            subtext: '#4b5563',
-                            accent: '#4f46e5'
+                            dark: '#4c1d95',     
+                            main: '#8b5cf6',     
+                            light: '#f3e8ff',    
+                            text: '#2e1065',     
+                            subtext: '#6b21a8',
+                            accent: '#7c3aed',
+                            gold: '#fbbf24'
                         }
                     },
                     boxShadow: {
-                        'app': '0 -10px 40px -15px rgba(99, 102, 241, 0.15), 0 10px 40px -15px rgba(99, 102, 241, 0.15)',
-                        'nav': '0 -5px 20px -5px rgba(99, 102, 241, 0.2)'
+                        'app': '0 -10px 40px -15px rgba(139, 92, 246, 0.2), 0 10px 40px -15px rgba(139, 92, 246, 0.2)',
+                        'nav': '0 -5px 20px -5px rgba(139, 92, 246, 0.25)'
                     }
                 }
             }
@@ -44,13 +45,14 @@
             max-width: 430px;
             margin: 0 auto;
             min-height: 100vh;
-            background-color: #f8fafc;
+            background-color: #fcfbfe;
             position: relative;
             box-shadow: 0 0 20px rgba(0,0,0,0.05);
             overflow-x: hidden;
         }
+        /* แบนเนอร์หลัก อ้างอิงชื่อไฟล์ แบนเนอร์.png */
         .banner-bg {
-            background-image: url('แบนเนอร์.PNG');
+            background-image: url('แบนเนอร์.png');
             background-size: cover;
             background-position: center;
             position: relative;
@@ -59,15 +61,15 @@
             content: '';
             position: absolute;
             inset: 0;
-            background: rgba(0, 0, 0, 0.35); /* ปรับความมืดให้อ่านหนังสือชัดขึ้น */
+            background: linear-gradient(180deg, rgba(46, 16, 101, 0.15) 0%, rgba(46, 16, 101, 0.45) 100%);
         }
         .hero-image-placeholder {
-            width: 130px;
-            height: 130px;
+            width: 140px;
+            height: 140px;
             background-color: white;
             border-radius: 50%;
-            border: 4px solid white;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+            border: 4px solid #f3e8ff;
+            box-shadow: 0 10px 25px rgba(107, 33, 168, 0.25);
             margin: 0 auto;
             position: relative;
             z-index: 20;
@@ -88,6 +90,38 @@
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
+
+        /* เอฟเฟกต์ดาววิ้งๆ และหัวใจลอยไปลอยมา */
+        .floating-element {
+            position: absolute;
+            animation: floatUp 4s ease-in-out infinite;
+            opacity: 0.8;
+            z-index: 15;
+            pointer-events: none;
+        }
+        @keyframes floatUp {
+            0% { transform: translateY(0px) scale(0.8); opacity: 0; }
+            50% { opacity: 1; }
+            100% { transform: translateY(-70px) scale(1.2); opacity: 0; }
+        }
+
+        /* Auto-Scroll ฟีดรีวิวเบาๆ */
+        @keyframes autoScroll {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-50%); }
+        }
+        .autoscroll-container {
+            overflow: hidden;
+            position: relative;
+        }
+        .autoscroll-track {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        .autoscroll-container:hover .autoscroll-track {
+            animation-play-state: paused; /* เอาเมาส์ชี้หยุดให้เลื่อนอ่านได้ */
+        }
     </style>
 </head>
 <body class="text-brand-text font-sans antialiased">
@@ -97,66 +131,73 @@
         <!-- ==================== PAGE 1: HOME (REVIEW FEED) ==================== -->
         <div id="page-home" class="page active">
             <!-- Header Section -->
-            <div class="banner-bg pt-8 px-6 pb-20 relative rounded-b-[40px]">
+            <div class="banner-bg pt-8 px-6 pb-24 relative rounded-b-[40px] overflow-hidden">
+                <!-- ดาววิ้งๆ และหัวใจลอยไปลอยมา -->
+                <div class="floating-element text-amber-300 text-xs" style="top: 20%; left: 10%; animation-delay: 0s;">✨</div>
+                <div class="floating-element text-pink-300 text-sm" style="top: 60%; left: 85%; animation-delay: 1.5s;">💖</div>
+                <div class="floating-element text-amber-200 text-sm" style="top: 30%; left: 80%; animation-delay: 2.2s;">⭐</div>
+                <div class="floating-element text-purple-300 text-xs" style="top: 75%; left: 20%; animation-delay: 0.8s;">✨</div>
+                <div class="floating-element text-pink-400 text-xs" style="top: 15%; left: 50%; animation-delay: 3s;">❤️</div>
+
                 <div class="flex justify-between items-center mb-6 relative z-10">
-                    <div class="text-white font-outfit text-xl font-bold tracking-wide flex flex-col">
+                    <div class="text-white font-outfit text-xl font-bold tracking-wide flex flex-col drop-shadow-md">
                         AHTAO MU-SPACE
-                        <span class="text-xs font-medium tracking-widest text-indigo-200 mt-0.5">Review & Credit</span>
+                        <span class="text-xs font-medium tracking-widest text-amber-200 mt-0.5">Review & Credit</span>
                     </div>
-                    <!-- ปุ่มกระดิ่งเปลี่ยนเป็นรูป Ahtao Mu-space.png -->
+                    <!-- ปุ่มกระดิ่ง/ไอคอนมุมบน อ้างอิงไฟล์ โลโก้.png (หรือเปลี่ยนชื่อตามรูปแรก) -->
                     <div class="relative cursor-pointer group" onclick="promptAdminPassword()" title="โหมดแอดมินจัดการรีวิว">
-                        <div class="w-10 h-10 rounded-full border-2 border-white/80 overflow-hidden shadow-md bg-white flex items-center justify-center">
-                            <img src="Ahtao Mu-space.png" alt="Admin Icon" class="w-full h-full object-cover">
+                        <div class="w-10 h-10 rounded-full border-2 border-amber-300 overflow-hidden shadow-md bg-white flex items-center justify-center">
+                            <img src="โลโก้.png" alt="Admin Icon" class="w-full h-full object-cover" onerror="this.src='https://i.postimg.cc/Ssm1y82k/att-wk7qrx-RHAp1Ej-HFxr8ZWJOqko-Id-NEvk-Y6mf5-n2Id-W4.jpg'">
                         </div>
                         <span id="admin-badge" class="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full border-2 border-white hidden"></span>
                     </div>
                 </div>
                 
                 <div class="text-center mb-2 z-10 relative">
-                    <h1 class="text-base font-semibold text-white drop-shadow flex justify-center items-center">
-                        ศูนย์รวมรีวิวและความน่าเชื่อถือ 
+                    <h1 class="text-base font-semibold text-white drop-shadow-md flex justify-center items-center">
+                        ศูนย์รวมรีวิวและความน่าเชื่อถือ ✨
                     </h1>
-                    <p class="text-xs font-medium text-indigo-100 mt-1 drop-shadow">รีวิวจากผู้ใช้บริการจริง ทั้งดูดวง, วอลเปเปอร์ และงานเว็บ</p>
+                    <p class="text-xs font-medium text-purple-100 mt-1 drop-shadow">รีวิวจากผู้ใช้บริการจริง ทั้งดูดวง, วอลเปเปอร์ และงานเว็บ</p>
                 </div>
                 
-                <!-- โลโก้ตรงกลาง ใช้ โลโก้.PNG -->
-                <div class="hero-image-placeholder mt-4 mb-[-60px]">
-                    <img src="โลโก้.PNG" alt="AhTao Logo" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 24 24\' fill=\'%236366f1\'><path d=\'M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5\'/></svg>'">
+                <!-- โลโก้ตรงกลาง อ้างอิงชื่อไฟล์ โลโก้.png -->
+                <div class="hero-image-placeholder mt-4 mb-[-70px]">
+                    <img src="โลโก้.png" alt="AhTao Logo" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='https://i.postimg.cc/Ssm1y82k/att-wk7qrx-RHAp1Ej-HFxr8ZWJOqko-Id-NEvk-Y6mf5-n2Id-W4.jpg'">
                 </div>
             </div>
 
             <!-- Content Area -->
-            <div class="bg-white rounded-t-[35px] -mt-10 relative z-10 pt-10 px-5 shadow-app pb-6">
+            <div class="bg-white rounded-t-[35px] -mt-12 relative z-10 pt-10 px-5 shadow-app pb-6">
                 <!-- Fast Menu Category Filter -->
                 <div class="text-center mb-4 mt-6">
-                    <span class="text-brand-accent font-semibold text-xs tracking-wide bg-brand-light px-4 py-1.5 rounded-full inline-block border border-indigo-100">
+                    <span class="text-brand-accent font-semibold text-xs tracking-wide bg-purple-50 px-4 py-1.5 rounded-full inline-block border border-purple-200 shadow-sm">
                         เลือกดูหมวดหมู่รีวิว
-                        <i class="fa-solid fa-filter ml-1"></i>
+                        <i class="fa-solid fa-filter ml-1 text-amber-500"></i>
                     </span>
                 </div>
                 
                 <div class="grid grid-cols-3 gap-3 mb-8">
                     <div class="flex flex-col items-center gap-2 cursor-pointer group" onclick="filterReviews('all')">
-                        <div class="w-14 h-14 rounded-2xl bg-indigo-50 group-hover:bg-indigo-100 flex items-center justify-center text-brand-accent text-lg shadow-sm border border-indigo-100 transition-colors">
+                        <div class="w-14 h-14 rounded-2xl bg-purple-50 group-hover:bg-purple-100 flex items-center justify-center text-brand-accent text-lg shadow-sm border border-purple-200 transition-colors">
                             <i class="fa-solid fa-border-all"></i>
                         </div>
                         <span class="text-[10px] text-center text-brand-text font-medium leading-tight">รีวิวทั้งหมด</span>
                     </div>
                     <div class="flex flex-col items-center gap-2 cursor-pointer group" onclick="filterReviews('horo')">
-                        <div class="w-14 h-14 rounded-2xl bg-purple-50 group-hover:bg-purple-100 flex items-center justify-center text-purple-600 text-lg shadow-sm border border-purple-100 transition-colors">
+                        <div class="w-14 h-14 rounded-2xl bg-amber-50 group-hover:bg-amber-100 flex items-center justify-center text-amber-600 text-lg shadow-sm border border-amber-200 transition-colors">
                             <i class="fa-solid fa-wand-magic-sparkles"></i>
                         </div>
                         <span class="text-[10px] text-center text-brand-text font-medium leading-tight">ดูดวง & มู</span>
                     </div>
                     <div class="flex flex-col items-center gap-2 cursor-pointer group" onclick="filterReviews('web')">
-                        <div class="w-14 h-14 rounded-2xl bg-blue-50 group-hover:bg-blue-100 flex items-center justify-center text-blue-600 text-lg shadow-sm border border-blue-100 transition-colors">
+                        <div class="w-14 h-14 rounded-2xl bg-fuchsia-50 group-hover:bg-fuchsia-100 flex items-center justify-center text-fuchsia-600 text-lg shadow-sm border border-fuchsia-200 transition-colors">
                             <i class="fa-solid fa-laptop-code"></i>
                         </div>
                         <span class="text-[10px] text-center text-brand-text font-medium leading-tight">รับทำเว็บ</span>
                     </div>
                 </div>
 
-                <!-- Review Feed (Gallery Style) -->
+                <!-- Review Feed (Gallery Style with Lightbox & Auto-Scroll vibe) -->
                 <div class="space-y-4 mb-8">
                     <div class="flex justify-between items-center mb-2">
                         <h3 class="font-bold text-brand-text text-sm flex items-center gap-2">
@@ -165,49 +206,46 @@
                         <span class="text-[10px] text-brand-subtext">กดที่รูปเพื่อดูภาพใหญ่</span>
                     </div>
 
-                    <!-- Review Card 1 (Horoscope/Wallpaper) -->
-                    <div class="review-item horo border border-slate-100 rounded-2xl bg-white shadow-sm p-4 space-y-3">
+                    <!-- Review Card 1 -->
+                    <div class="review-item horo border border-purple-100 rounded-2xl bg-white shadow-sm p-4 space-y-3">
                         <div class="flex justify-between items-center text-xs text-brand-subtext">
                             <span class="font-bold text-brand-text"><i class="fa-solid fa-user-circle text-brand-accent mr-1"></i> คุณ A*** (รีวิวดูดวง)</span>
                             <span>2 วันที่แล้ว</span>
                         </div>
                         <p class="text-xs text-brand-text">"แม่นมากกกก ขนลุกเลยค่ะอาจารย์ เหมือนตาเห็น ทักตรงเป๊ะทุกเรื่องที่กังวล"</p>
-                        <!-- Image Preview Grid -->
                         <div class="grid grid-cols-2 gap-2">
-                            <div class="rounded-xl overflow-hidden bg-slate-100 h-36 flex items-center justify-center border border-slate-200">
-                                <i class="fa-regular fa-image text-slate-400 text-2xl"></i>
+                            <div onclick="openLightbox('https://i.postimg.cc/Ssm1y82k/att-wk7qrx-RHAp1Ej-HFxr8ZWJOqko-Id-NEvk-Y6mf5-n2Id-W4.jpg')" class="rounded-xl overflow-hidden bg-purple-50/50 h-36 flex items-center justify-center border border-purple-100 cursor-pointer hover:opacity-90 transition-opacity">
+                                <i class="fa-regular fa-image text-purple-300 text-2xl"></i>
                             </div>
-                            <div class="rounded-xl overflow-hidden bg-slate-100 h-36 flex items-center justify-center border border-slate-200">
-                                <i class="fa-regular fa-image text-slate-400 text-2xl"></i>
+                            <div onclick="openLightbox('https://i.postimg.cc/Ssm1y82k/att-wk7qrx-RHAp1Ej-HFxr8ZWJOqko-Id-NEvk-Y6mf5-n2Id-W4.jpg')" class="rounded-xl overflow-hidden bg-purple-50/50 h-36 flex items-center justify-center border border-purple-100 cursor-pointer hover:opacity-90 transition-opacity">
+                                <i class="fa-regular fa-image text-purple-300 text-2xl"></i>
                             </div>
                         </div>
-                        <!-- ปุ่มจัดการเฉพาะแอดมิน (ซ่อนไว้ก่อนจนกว่าจะใส่รหัสผ่าน) -->
-                        <div class="admin-controls hidden pt-2 border-t border-slate-100 flex justify-end gap-2">
-                            <button onclick="alert('ฟังก์ชันแก้ไขรีวิว')" class="text-[10px] bg-amber-100 text-amber-700 px-2.5 py-1 rounded-lg font-bold"><i class="fa-solid fa-pen"></i> แก้ไข</button>
+                        <div class="admin-controls hidden pt-2 border-t border-purple-50 flex justify-end gap-2">
+                            <button onclick="alert('ฟังก์ชันแก้ไขรีวิว')" class="text-[10px] bg-amber-100 text-amber-800 px-2.5 py-1 rounded-lg font-bold"><i class="fa-solid fa-pen"></i> แก้ไข</button>
                             <button onclick="alert('ลบรีวิวนี้')" class="text-[10px] bg-red-100 text-red-600 px-2.5 py-1 rounded-lg font-bold"><i class="fa-solid fa-trash"></i> ลบ</button>
                         </div>
                     </div>
 
-                    <!-- Review Card 2 (Web Development) -->
-                    <div class="review-item web border border-slate-100 rounded-2xl bg-white shadow-sm p-4 space-y-3">
+                    <!-- Review Card 2 -->
+                    <div class="review-item web border border-purple-100 rounded-2xl bg-white shadow-sm p-4 space-y-3">
                         <div class="flex justify-between items-center text-xs text-brand-subtext">
-                            <span class="font-bold text-brand-text"><i class="fa-solid fa-user-circle text-blue-500 mr-1"></i> คุณ B*** (รีวิวทำเว็บ)</span>
+                            <span class="font-bold text-brand-text"><i class="fa-solid fa-user-circle text-fuchsia-600 mr-1"></i> คุณ B*** (รีวิวทำเว็บ)</span>
                             <span>เมื่อวานนี้</span>
                         </div>
                         <p class="text-xs text-brand-text">"งานไวมาก ระบบหลังบ้านใช้งานง่าย ดีไซน์สวยตรงเรฟเป๊ะ ลูกค้าชมเว็บเยอะมากครับ"</p>
-                        <div class="rounded-xl overflow-hidden bg-slate-100 h-40 flex items-center justify-center border border-slate-200">
-                            <i class="fa-regular fa-image text-slate-400 text-2xl"></i>
+                        <div onclick="openLightbox('https://i.postimg.cc/Ssm1y82k/att-wk7qrx-RHAp1Ej-HFxr8ZWJOqko-Id-NEvk-Y6mf5-n2Id-W4.jpg')" class="rounded-xl overflow-hidden bg-purple-50/50 h-40 flex items-center justify-center border border-purple-100 cursor-pointer hover:opacity-90 transition-opacity">
+                            <i class="fa-regular fa-image text-purple-300 text-2xl"></i>
                         </div>
-                        <!-- ปุ่มจัดการเฉพาะแอดมิน -->
-                        <div class="admin-controls hidden pt-2 border-t border-slate-100 flex justify-end gap-2">
-                            <button onclick="alert('ฟังก์ชันแก้ไขรีวิว')" class="text-[10px] bg-amber-100 text-amber-700 px-2.5 py-1 rounded-lg font-bold"><i class="fa-solid fa-pen"></i> แก้ไข</button>
+                        <div class="admin-controls hidden pt-2 border-t border-purple-50 flex justify-end gap-2">
+                            <button onclick="alert('ฟังก์ชันแก้ไขรีวิว')" class="text-[10px] bg-amber-100 text-amber-800 px-2.5 py-1 rounded-lg font-bold"><i class="fa-solid fa-pen"></i> แก้ไข</button>
                             <button onclick="alert('ลบรีวิวนี้')" class="text-[10px] bg-red-100 text-red-600 px-2.5 py-1 rounded-lg font-bold"><i class="fa-solid fa-trash"></i> ลบ</button>
                         </div>
                     </div>
                 </div>
 
                 <!-- Backup Channel Notice -->
-                <div class="border border-indigo-100 rounded-2xl bg-indigo-50/50 p-4 text-center space-y-2">
+                <div class="border border-purple-200 rounded-2xl bg-purple-50/60 p-4 text-center space-y-2 shadow-sm">
                     <p class="font-bold text-brand-text text-xs"><i class="fa-solid fa-shield-halved text-brand-accent mr-1"></i> แจ้งเตือนช่องทางสำรอง</p>
                     <p class="text-[11px] text-brand-subtext">หากเฟสหลักมีปัญหา ติดต่ออาเต๋าได้ทาง Line OA หรือ Instagram หลักนี้ได้ตลอดเวลา การันตีตัวจริงไม่มีหาย!</p>
                 </div>
@@ -221,11 +259,11 @@
                     <div class="w-8 h-8 bg-white/80 rounded-full flex items-center justify-center text-brand-accent backdrop-blur-md shadow-sm cursor-pointer" onclick="switchTab('page-home', 0)">
                         <i class="fa-solid fa-chevron-left text-sm"></i>
                     </div>
-                    <div class="text-white font-outfit text-xl font-bold tracking-wide">AHTAO MU-SPACE</div>
+                    <div class="text-white font-outfit text-xl font-bold tracking-wide drop-shadow">AHTAO MU-SPACE</div>
                     <div class="w-8"></div>
                 </div>
                 <div class="text-center mb-2 z-10 relative">
-                    <h1 class="font-outfit text-xs font-medium text-indigo-100">Submit Review</h1>
+                    <h1 class="font-outfit text-xs font-medium text-purple-100">Submit Review</h1>
                     <div class="text-xl font-bold mt-1 text-white flex justify-center items-center drop-shadow">
                         ส่งรีวิว / ฟีดแบ็ก <i class="fa-regular fa-paper-plane ml-2"></i>
                     </div>
@@ -233,17 +271,17 @@
             </div>
 
             <div class="px-5 -mt-10 relative z-10 pb-8">
-                <div class="bg-white rounded-[24px] shadow-app border border-slate-100 p-6 space-y-4">
+                <div class="bg-white rounded-[24px] shadow-app border border-purple-100 p-6 space-y-4">
                     <p class="text-xs text-brand-subtext text-center">ส่งรูปรีวิวหรือความประทับใจของคุณได้ที่นี่ ข้อมูลจะแสดงผลหลังผ่านการตรวจสอบครับ ✨</p>
                     
                     <div class="space-y-3">
                         <div>
                             <label class="block text-xs font-bold text-brand-text mb-1">ชื่อผู้รีวิว / นามแฝง</label>
-                            <input type="text" placeholder="เช่น คุณมิน หรือ A***" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-xs focus:outline-none focus:border-brand-accent bg-slate-50">
+                            <input type="text" placeholder="เช่น คุณมิน หรือ A***" class="w-full px-4 py-2.5 rounded-xl border border-purple-200 text-xs focus:outline-none focus:border-brand-accent bg-purple-50/30">
                         </div>
                         <div>
                             <label class="block text-xs font-bold text-brand-text mb-1">ประเภทบริการ</label>
-                            <select class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-xs focus:outline-none focus:border-brand-accent bg-slate-50">
+                            <select class="w-full px-4 py-2.5 rounded-xl border border-purple-200 text-xs focus:outline-none focus:border-brand-accent bg-purple-50/30">
                                 <option>ดูดวง / ไพ่ยิปซี</option>
                                 <option>วอลเปเปอร์เสริมดวง</option>
                                 <option>รับทำเว็บไซต์</option>
@@ -251,17 +289,17 @@
                         </div>
                         <div>
                             <label class="block text-xs font-bold text-brand-text mb-1">ข้อความรีวิวสั้นๆ</label>
-                            <textarea rows="3" placeholder="พิมพ์ความรู้สึกหรือผลลัพธ์หลังใช้บริการ..." class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-xs focus:outline-none focus:border-brand-accent bg-slate-50"></textarea>
+                            <textarea rows="3" placeholder="พิมพ์ความรู้สึกหรือผลลัพธ์หลังใช้บริการ..." class="w-full px-4 py-2.5 rounded-xl border border-purple-200 text-xs focus:outline-none focus:border-brand-accent bg-purple-50/30"></textarea>
                         </div>
                         <div>
-                            <label class="block text-xs font-bold text-brand-text mb-1">แนบรูปภาพรีวิว / แคปแชท</label>
-                            <div class="border-2 border-dashed border-indigo-200 rounded-xl p-6 text-center bg-indigo-50/30 cursor-pointer hover:bg-indigo-50 transition-colors">
+                            <label class="block text-xs font-bold text-brand-text mb-1">แนบรูปภาพรีวิว / แคปแชท (เลือกได้หลายรูป)</label>
+                            <div class="border-2 border-dashed border-purple-300 rounded-xl p-6 text-center bg-purple-50/40 cursor-pointer hover:bg-purple-50 transition-colors">
                                 <i class="fa-solid fa-cloud-arrow-up text-brand-accent text-2xl mb-2"></i>
                                 <p class="text-xs font-medium text-brand-text">คลิกเพื่ออัปโหลดรูปภาพรีวิว</p>
                                 <p class="text-[10px] text-brand-subtext mt-1">รองรับไฟล์ JPG, PNG</p>
                             </div>
                         </div>
-                        <button class="w-full bg-brand-accent hover:bg-indigo-700 text-white font-semibold py-3.5 rounded-xl shadow-lg shadow-indigo-200 transition-all text-sm flex items-center justify-center gap-2 mt-4">
+                        <button class="w-full bg-brand-accent hover:bg-purple-800 text-white font-semibold py-3.5 rounded-xl shadow-lg shadow-purple-200 transition-all text-sm flex items-center justify-center gap-2 mt-4">
                             ส่งรีวิวเข้าระบบ <i class="fa-solid fa-check"></i>
                         </button>
                     </div>
@@ -276,11 +314,11 @@
                     <div class="w-8 h-8 bg-white/80 rounded-full flex items-center justify-center text-brand-accent backdrop-blur-md shadow-sm cursor-pointer" onclick="switchTab('page-home', 0)">
                         <i class="fa-solid fa-chevron-left text-sm"></i>
                     </div>
-                    <div class="text-white font-outfit text-xl font-bold tracking-wide">AHTAO MU-SPACE</div>
+                    <div class="text-white font-outfit text-xl font-bold tracking-wide drop-shadow">AHTAO MU-SPACE</div>
                     <div class="w-8"></div>
                 </div>
                 <div class="text-center mb-2 z-10 relative">
-                    <h1 class="font-outfit text-xs font-medium text-indigo-100">Contact Channels</h1>
+                    <h1 class="font-outfit text-xs font-medium text-purple-100">Contact Channels</h1>
                     <div class="text-xl font-bold mt-1 text-white flex justify-center items-center drop-shadow">
                         ช่องทางติดต่อหลัก & สำรอง <i class="fa-regular fa-comments ml-2"></i>
                     </div>
@@ -288,10 +326,10 @@
             </div>
 
             <div class="px-5 -mt-10 relative z-10 pb-8">
-                <div class="bg-white rounded-[24px] shadow-app border border-slate-100 p-8 flex justify-center gap-6">
+                <div class="bg-white rounded-[24px] shadow-app border border-purple-100 p-8 flex justify-center gap-6">
                     <!-- Facebook -->
                     <a href="https://www.facebook.com/share/1brtHZ4VHz/?mibextid=wwXIfr" target="_blank" class="flex flex-col items-center gap-2 group">
-                        <div class="w-14 h-14 rounded-full border-2 border-indigo-100 bg-indigo-50 text-blue-600 flex items-center justify-center text-2xl group-hover:bg-blue-600 group-hover:text-white transition-all shadow-sm">
+                        <div class="w-14 h-14 rounded-full border-2 border-blue-100 bg-blue-50 text-blue-600 flex items-center justify-center text-2xl group-hover:bg-blue-600 group-hover:text-white transition-all shadow-sm">
                             <i class="fa-brands fa-facebook-f"></i>
                         </div>
                         <span class="text-xs font-semibold text-brand-text">Facebook</span>
@@ -315,7 +353,7 @@
         </div>
 
         <!-- ==================== BOTTOM NAVIGATION ==================== -->
-        <div class="fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-md border-t border-slate-100 px-6 py-3 z-50 shadow-nav max-w-[430px] mx-auto rounded-t-3xl">
+        <div class="fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-md border-t border-purple-100 px-6 py-3 z-50 shadow-nav max-w-[430px] mx-auto rounded-t-3xl">
             <div class="flex justify-between items-end pb-2">
                 <div class="flex flex-col items-center gap-1 cursor-pointer w-1/3 text-brand-accent" onclick="switchTab('page-home', 0)" id="nav-item-0">
                     <i class="fa-solid fa-star text-xl mb-0.5"></i>
@@ -334,9 +372,28 @@
 
     </div>
 
+    <!-- LIGHTBOX MODAL (สำหรับกดดูรูปใหญ่) -->
+    <div id="lightbox-modal" class="fixed inset-0 bg-black/80 z-[100] hidden flex items-center justify-center p-4" onclick="closeLightbox()">
+        <div class="relative max-w-full max-h-full">
+            <button class="absolute -top-10 right-0 text-white text-2xl px-2 py-1"><i class="fa-solid fa-xmark"></i></button>
+            <img id="lightbox-img" src="" alt="Zoomed Review" class="max-w-full max-h-[80vh] rounded-2xl object-contain border-2 border-white/20 shadow-2xl">
+        </div>
+    </div>
+
     <!-- Scripting -->
     <script>
-        // ระบบใส่รหัสผ่านแอดมิน (ป้องกันคนนอกมาปั่นรีวิว)
+        // ฟังก์ชันเปิด-ปิด Lightbox ดูรูปใหญ่
+        function openLightbox(imgSrc) {
+            const modal = document.getElementById('lightbox-modal');
+            const img = document.getElementById('lightbox-img');
+            img.src = imgSrc;
+            modal.classList.remove('hidden');
+        }
+        function closeLightbox() {
+            document.getElementById('lightbox-modal').classList.add('hidden');
+        }
+
+        // ระบบใส่รหัสผ่านแอดมิน (รหัสผ่านตั้งไว้ 1234)
         let isAdminLoggedIn = false;
         function promptAdminPassword() {
             if (isAdminLoggedIn) {
@@ -350,7 +407,6 @@
             }
 
             let pwd = prompt('กรุณากรอกรหัสผ่านแอดมินเพื่อจัดการรีวิว:');
-            // ตั้งรหัสผ่านตรงนี้ได้เลย (ตัวอย่างตั้งไว้ 1234)
             if (pwd === '1234') { 
                 isAdminLoggedIn = true;
                 document.getElementById('admin-badge').classList.remove('hidden');
