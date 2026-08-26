@@ -50,7 +50,6 @@
             box-shadow: 0 0 20px rgba(0,0,0,0.05);
             overflow-x: hidden;
         }
-        /* ชื่อไฟล์แบนเนอร์เป๊ะตามจริง ไม่มีเว้นวรรค */
         .banner-bg {
             background-image: url('แบนเนอร์.PNG');
             background-size: cover;
@@ -90,8 +89,6 @@
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
-
-        /* เอฟเฟกต์รูปทรงเรขาคณิตทึบ (ดาว/หัวใจสีทึบ) ลอยไปมา ไม่มีอีโมจิฟรุ้งฟริ้ง */
         .floating-shape {
             position: absolute;
             animation: floatUp 4s ease-in-out infinite;
@@ -114,7 +111,6 @@
         <div id="page-home" class="page active">
             <!-- Header Section -->
             <div class="banner-bg pt-8 px-6 pb-24 relative rounded-b-[40px] overflow-hidden">
-                <!-- ไอคอนรูปทรงสีทึบลอยไปมา -->
                 <div class="floating-shape text-amber-300 text-xs" style="top: 20%; left: 10%; animation-delay: 0s;"><i class="fa-solid fa-star"></i></div>
                 <div class="floating-shape text-pink-400 text-sm" style="top: 60%; left: 85%; animation-delay: 1.5s;"><i class="fa-solid fa-heart"></i></div>
                 <div class="floating-shape text-amber-200 text-sm" style="top: 30%; left: 80%; animation-delay: 2.2s;"><i class="fa-solid fa-shield"></i></div>
@@ -125,7 +121,6 @@
                         AHTAO MU-SPACE
                         <span class="text-xs font-medium tracking-widest text-amber-200 mt-0.5">Review & Credit</span>
                     </div>
-                    <!-- ปุ่มแอดมิน มุมขวาบน ใช้รูป Ahtao Mu-space.png ตามที่ตั้งไว้ -->
                     <div class="relative cursor-pointer group" onclick="promptAdminPassword()" title="โหมดแอดมินจัดการรีวิว">
                         <div class="w-10 h-10 rounded-full border-2 border-amber-300 overflow-hidden shadow-md bg-white flex items-center justify-center">
                             <img src="Ahtao Mu-space.png" alt="Admin Icon" class="w-full h-full object-cover" onerror="this.src='โลโก้.png'">
@@ -141,7 +136,6 @@
                     <p class="text-xs font-medium text-purple-100 mt-1 drop-shadow">รีวิวจากผู้ใช้บริการจริง ทั้งดูดวง, วอลเปเปอร์ และงานเว็บ</p>
                 </div>
                 
-                <!-- โลโก้ตรงกลาง ใช้ชื่อไฟล์ โลโก้.png ไม่มีเว้นวรรค -->
                 <div class="hero-image-placeholder mt-4 mb-[-70px]">
                     <img src="โลโก้.png" alt="AhTao Logo" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='https://i.postimg.cc/Ssm1y82k/att-wk7qrx-RHAp1Ej-HFxr8ZWJOqko-Id-NEvk-Y6mf5-n2Id-W4.jpg'">
                 </div>
@@ -150,14 +144,13 @@
             <!-- Content Area -->
             <div class="bg-white rounded-t-[35px] -mt-12 relative z-10 pt-10 px-5 shadow-app pb-6">
                 
-                <!-- ปุ่มเพิ่มรีวิวสำหรับแอดมิน (ซ่อนไว้จนกว่าจะใส่รหัสผ่าน 1234) -->
+                <!-- ปุ่มเพิ่มรีวิวสำหรับแอดมิน -->
                 <div id="admin-action-bar" class="mb-6 hidden">
-                    <button onclick="openAddReviewModal()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-3 rounded-xl shadow-md text-xs flex items-center justify-center gap-2">
+                    <button onclick="switchTab('page-submit', 1)" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-3 rounded-xl shadow-md text-xs flex items-center justify-center gap-2">
                         <i class="fa-solid fa-circle-plus text-sm"></i> เพิ่มรีวิวใหม่เข้าระบบ (แอดมิน)
                     </button>
                 </div>
 
-                <!-- Category Filter -->
                 <div class="text-center mb-4 mt-2">
                     <span class="text-brand-accent font-semibold text-xs tracking-wide bg-purple-50 px-4 py-1.5 rounded-full inline-block border border-purple-200 shadow-sm">
                         เลือกดูหมวดหมู่รีวิว
@@ -165,7 +158,7 @@
                     </span>
                 </div>
                 
-                <div class="grid grid-cols-3 gap-3 mb-8">
+                <div class="grid grid-cols-3 gap-3 mb-6">
                     <div class="flex flex-col items-center gap-2 cursor-pointer group" onclick="filterReviews('all')">
                         <div class="w-14 h-14 rounded-2xl bg-purple-50 group-hover:bg-purple-100 flex items-center justify-center text-brand-accent text-lg shadow-sm border border-purple-200 transition-colors">
                             <i class="fa-solid fa-border-all"></i>
@@ -186,8 +179,16 @@
                     </div>
                 </div>
 
-                <!-- Review Feed Container (ดึงข้อมูลสดจาก Google Sheets พร้อมระบบกันค้าง/กันพัง) -->
-                <div class="space-y-4 mb-8">
+                <!-- 🌟 ย้ายกล่องแจ้งเตือนช่องทางสำรอง มาไว้ตรงนี้ (ใต้ปุ่มหมวดหมู่ / บนหัวข้อแกลเลอรี) 🌟 -->
+                <div class="border border-purple-200 rounded-2xl bg-purple-50/70 p-4 text-center space-y-1.5 shadow-sm mb-6">
+                    <p class="font-bold text-brand-text text-xs flex items-center justify-center gap-1.5">
+                        <i class="fa-solid fa-shield-halved text-brand-accent"></i> แจ้งเตือนช่องทางสำรอง
+                    </p>
+                    <p class="text-[11px] text-brand-subtext leading-relaxed">หากเฟสหลักมีปัญหา ติดต่ออาเต๋าได้ทาง Line OA หรือ Instagram หลักนี้ได้ตลอดเวลา การันตีตัวจริงไม่มีหาย!</p>
+                </div>
+
+                <!-- Review Feed Container -->
+                <div class="space-y-4 mb-6">
                     <div class="flex justify-between items-center mb-2">
                         <h3 class="font-bold text-brand-text text-sm flex items-center gap-2">
                             <i class="fa-solid fa-images text-brand-accent"></i> แกลเลอรีรีวิวจากลูกค้า
@@ -195,7 +196,6 @@
                         <span class="text-[10px] text-brand-subtext">กดที่รูปเพื่อดูภาพใหญ่</span>
                     </div>
 
-                    <!-- จุดแสดงผลรีวิวจาก Google Sheets -->
                     <div id="reviews-feed-container" class="space-y-4">
                         <div class="text-center py-10 text-xs text-brand-subtext">
                             <i class="fa-solid fa-spinner fa-spin text-lg mb-2"></i> กำลังโหลดรีวิวจากหลังบ้าน...
@@ -203,11 +203,6 @@
                     </div>
                 </div>
 
-                <!-- Backup Channel Notice -->
-                <div class="border border-purple-200 rounded-2xl bg-purple-50/60 p-4 text-center space-y-2 shadow-sm">
-                    <p class="font-bold text-brand-text text-xs"><i class="fa-solid fa-shield-halved text-brand-accent mr-1"></i> แจ้งเตือนช่องทางสำรอง</p>
-                    <p class="text-[11px] text-brand-subtext">หากเฟสหลักมีปัญหา ติดต่ออาเต๋าได้ทาง Line OA หรือ Instagram หลักนี้ได้ตลอดเวลา การันตีตัวจริงไม่มีหาย!</p>
-                </div>
             </div>
         </div>
 
@@ -224,14 +219,14 @@
                 <div class="text-center mb-2 z-10 relative">
                     <h1 class="font-outfit text-xs font-medium text-purple-100">Submit Review</h1>
                     <div class="text-xl font-bold mt-1 text-white flex justify-center items-center drop-shadow">
-                        ส่งรีวิว / ฟีดแบ็ก <i class="fa-regular fa-paper-plane ml-2"></i>
+                        ส่งรีวิว / เพิ่มรีวิว <i class="fa-regular fa-paper-plane ml-2"></i>
                     </div>
                 </div>
             </div>
 
             <div class="px-5 -mt-10 relative z-10 pb-8">
                 <div class="bg-white rounded-[24px] shadow-app border border-purple-100 p-6 space-y-4">
-                    <p class="text-xs text-brand-subtext text-center">ส่งรูปรีวิวหรือความประทับใจของคุณได้ที่นี่ ข้อมูลจะบันทึกเข้าระบบหลังบ้านทันที</p>
+                    <p class="text-xs text-brand-subtext text-center">อัปโหลดรูปภาพรีวิวจากเครื่องและพิมพ์ข้อความได้เลย รีวิวจะเด้งขึ้นหน้าจอทันที</p>
                     
                     <div class="space-y-3">
                         <div>
@@ -250,11 +245,16 @@
                             <textarea id="public-message" rows="3" placeholder="พิมพ์ความรู้สึกหรือผลลัพธ์หลังใช้บริการ..." class="w-full px-4 py-2.5 rounded-xl border border-purple-200 text-xs focus:outline-none focus:border-brand-accent bg-purple-50/30"></textarea>
                         </div>
                         <div>
-                            <label class="block text-xs font-bold text-brand-text mb-1">ลิงก์รูปภาพรีวิว (URL รูปภาพ)</label>
-                            <input type="text" id="public-image" placeholder="วางลิงก์รูปภาพ (เช่น จาก PostImage)" class="w-full px-4 py-2.5 rounded-xl border border-purple-200 text-xs focus:outline-none focus:border-brand-accent bg-purple-50/30">
+                            <label class="block text-xs font-bold text-brand-text mb-1">แนบรูปภาพรีวิวจากเครื่อง</label>
+                            <label class="border-2 border-dashed border-purple-300 rounded-xl p-6 text-center bg-purple-50/40 cursor-pointer hover:bg-purple-50 transition-colors block">
+                                <i class="fa-solid fa-cloud-arrow-up text-brand-accent text-2xl mb-2"></i>
+                                <p id="file-name-display" class="text-xs font-medium text-brand-text">คลิกเพื่อเลือกรูปภาพจากเครื่อง</p>
+                                <p class="text-[10px] text-brand-subtext mt-1">รองรับไฟล์ JPG, PNG</p>
+                                <input type="file" id="public-image-file" accept="image/*" class="hidden" onchange="previewSelectedImage(this)">
+                            </label>
                         </div>
-                        <button onclick="submitPublicReview()" class="w-full bg-brand-accent hover:bg-purple-800 text-white font-semibold py-3.5 rounded-xl shadow-lg shadow-purple-200 transition-all text-sm flex items-center justify-center gap-2 mt-4">
-                            ส่งรีวิวเข้าระบบ <i class="fa-solid fa-check"></i>
+                        <button onclick="submitReviewLocally()" class="w-full bg-brand-accent hover:bg-purple-800 text-white font-semibold py-3.5 rounded-xl shadow-lg shadow-purple-200 transition-all text-sm flex items-center justify-center gap-2 mt-4">
+                            บันทึกและแสดงรีวิวทันที <i class="fa-solid fa-check"></i>
                         </button>
                     </div>
                 </div>
@@ -323,7 +323,7 @@
 
     </div>
 
-    <!-- LIGHTBOX MODAL (สำหรับกดดูรูปใหญ่) -->
+    <!-- LIGHTBOX MODAL -->
     <div id="lightbox-modal" class="fixed inset-0 bg-black/80 z-[100] hidden flex items-center justify-center p-4" onclick="closeLightbox()">
         <div class="relative max-w-full max-h-full">
             <button class="absolute -top-10 right-0 text-white text-2xl px-2 py-1"><i class="fa-solid fa-xmark"></i></button>
@@ -331,20 +331,19 @@
         </div>
     </div>
 
-    <!-- SCRIPTING (พร้อมระบบป้องกันพัง/กันค้าง และดึงข้อมูล Google Sheets) -->
+    <!-- SCRIPTING -->
     <script>
-        // ลิงก์ API Google Apps Script ของอาเต๋า
         const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzYPYKoOpoZw66B62baMHxZmUpP5y0sxuXvKRFLhEiMvHK_F8tRjTX_nG9oFrJNiNNR/exec';
 
         let allReviewsData = [];
         let isAdminLoggedIn = false;
+        let tempBase64Image = '';
 
-        // ฟังก์ชันดึงข้อมูลจาก Google Sheets (มีระบบกันค้าง ลองรับ Timeout ป้องกันเว็บแฮงก์)
         async function fetchReviews() {
             const feedContainer = document.getElementById('reviews-feed-container');
             try {
                 const controller = new AbortController();
-                const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 วินาทีตัดถ้าเน็ตช้า
+                const timeoutId = setTimeout(() => controller.abort(), 10000);
 
                 const response = await fetch(SCRIPT_URL, { signal: controller.signal });
                 clearTimeout(timeoutId);
@@ -352,21 +351,40 @@
                 if (!response.ok) throw new Error('Network response was not ok');
                 
                 const data = await response.json();
-                allReviewsData = data;
+                const localSaved = JSON.parse(localStorage.getItem('local_reviews') || '[]');
+                allReviewsData = [...localSaved, ...data];
+                
                 renderReviews(allReviewsData);
             } catch (error) {
                 console.error('Error fetching reviews:', error);
-                // ระบบสำรองกันเว็บพัง กรณีดึงชีตไม่ได้ ให้แสดงข้อมูลสลอตสำรอง
-                feedContainer.innerHTML = `
-                    <div class="border border-purple-100 rounded-2xl bg-white shadow-sm p-4 text-center space-y-2">
-                        <p class="text-xs font-bold text-brand-text">กำลังเชื่อมต่อฐานข้อมูลรีวิว...</p>
-                        <p class="text-[10px] text-brand-subtext">หากรีวิวยังไม่ขึ้น ลองรีเฟรชหน้าใหม่อีกครั้ง</p>
-                    </div>
-                `;
+                const localSaved = JSON.parse(localStorage.getItem('local_reviews') || '[]');
+                if (localSaved.length > 0) {
+                    allReviewsData = localSaved;
+                    renderReviews(allReviewsData);
+                } else {
+                    feedContainer.innerHTML = `
+                        <div class="border border-purple-100 rounded-2xl bg-white shadow-sm p-4 text-center space-y-2">
+                            <p class="text-xs font-bold text-brand-text">กำลังโหลดข้อมูลรีวิว...</p>
+                            <p class="text-[10px] text-brand-subtext">หากยังไม่แสดงผล ลองกดส่งรีวิวทดสอบด้านล่างได้เลยครับ</p>
+                        </div>
+                    `;
+                }
             }
         }
 
-        // ฟังก์ชันแสดงผลรีวิวลงบนหน้าเว็บ
+        function previewSelectedImage(input) {
+            if (input.files && input.files[0]) {
+                const file = input.files[0];
+                document.getElementById('file-name-display').innerText = "เลือกรูปภาพแล้ว: " + file.name;
+                
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    tempBase64Image = e.target.result;
+                }
+                reader.readAsDataURL(file);
+            }
+        }
+
         function renderReviews(reviews) {
             const feedContainer = document.getElementById('reviews-feed-container');
             if (!reviews || reviews.length === 0) {
@@ -384,7 +402,7 @@
                     <div class="review-item ${categoryClass} border border-purple-100 rounded-2xl bg-white shadow-sm p-4 space-y-3">
                         <div class="flex justify-between items-center text-xs text-brand-subtext">
                             <span class="font-bold text-brand-text"><i class="fa-solid fa-user-circle ${catColor} mr-1"></i> ${item.name || 'คุณลูกค้า'} (${catLabel})</span>
-                            <span>${item.date || 'เร็วๆ นี้'}</span>
+                            <span>${item.date || 'วันนี้'}</span>
                         </div>
                         <p class="text-xs text-brand-text">"${item.message || '-'}"</p>
                         ${item.image ? `
@@ -393,8 +411,7 @@
                             </div>
                         ` : ''}
                         <div class="admin-controls ${isAdminLoggedIn ? '' : 'hidden'} pt-2 border-t border-purple-50 flex justify-end gap-2">
-                            <button onclick="alert('ฟังก์ชันแก้ไขรีวิว (จัดการผ่าน Google Sheets สะดวกที่สุดครับ)')" class="text-[10px] bg-amber-100 text-amber-800 px-2.5 py-1 rounded-lg font-bold"><i class="fa-solid fa-pen"></i> แก้ไข</button>
-                            <button onclick="alert('ฟังก์ชันลบรีวิว (ลบแถวใน Google Sheets ได้เลยครับ)')" class="text-[10px] bg-red-100 text-red-600 px-2.5 py-1 rounded-lg font-bold"><i class="fa-solid fa-trash"></i> ลบ</button>
+                            <button onclick="deleteLocalReview(${index})" class="text-[10px] bg-red-100 text-red-600 px-2.5 py-1 rounded-lg font-bold"><i class="fa-solid fa-trash"></i> ลบรีวิวนี้</button>
                         </div>
                     </div>
                 `;
@@ -402,10 +419,8 @@
             feedContainer.innerHTML = html;
         }
 
-        // โหลดข้อมูลรีวิวทันทีเมื่อเปิดหน้าเว็บ
         window.addEventListener('DOMContentLoaded', fetchReviews);
 
-        // ฟังก์ชันกรองหมวดหมู่รีวิว
         function filterReviews(category) {
             const items = document.querySelectorAll('.review-item');
             items.forEach(item => {
@@ -417,7 +432,6 @@
             });
         }
 
-        // ระบบ Lightbox ดูรูปใหญ่
         function openLightbox(imgSrc) {
             const modal = document.getElementById('lightbox-modal');
             const img = document.getElementById('lightbox-img');
@@ -428,7 +442,6 @@
             document.getElementById('lightbox-modal').classList.add('hidden');
         }
 
-        // ระบบรหัสผ่านแอดมิน (รหัส 1234)
         function promptAdminPassword() {
             if (isAdminLoggedIn) {
                 if (confirm('คุณต้องการออกจากโหมดแอดมินใช่หรือไม่?')) {
@@ -453,31 +466,54 @@
             }
         }
 
-        // ฟังก์ชันเปิดฟอร์มเพิ่มรีวิวสำหรับแอดมิน
-        function openAddReviewModal() {
-            switchTab('page-submit', 1);
-        }
-
-        // ส่งรีวิวจากหน้าเว็บ (บันทึกข้อมูลเข้า Google Sheets แบบเบื้องต้น)
-        function submitPublicReview() {
+        function submitReviewLocally() {
             const name = document.getElementById('public-name').value.trim();
             const category = document.getElementById('public-category').value;
             const message = document.getElementById('public-message').value.trim();
-            const image = document.getElementById('public-image').value.trim();
 
             if (!name || !message) {
                 alert('กรุณากรอกชื่อและข้อความรีวิวให้ครบถ้วนครับ');
                 return;
             }
 
-            alert('ส่งรีวิวเรียบร้อย! ข้อมูลถูกบันทึกเข้าระบบแล้ว (สามารถเพิ่มข้อมูลนี้ลงใน Google Sheets ของอาเต๋าได้เลย)');
+            const newReview = {
+                name: name,
+                category: category,
+                message: message,
+                image: tempBase64Image || '',
+                date: 'เพิ่งรีวิวสดๆร้อนๆ'
+            };
+
+            let localSaved = JSON.parse(localStorage.getItem('local_reviews') || '[]');
+            localSaved.unshift(newReview);
+            localStorage.setItem('local_reviews', JSON.stringify(localSaved));
+
+            alert('เพิ่มรีวิวสำเร็จ! รีวิวเด้งขึ้นหน้าจอเว็บเรียบร้อยครับ ✨');
+            
             document.getElementById('public-name').value = '';
             document.getElementById('public-message').value = '';
-            document.getElementById('public-image').value = '';
+            document.getElementById('public-image-file').value = '';
+            document.getElementById('file-name-display').innerText = "คลิกเพื่อเลือกรูปภาพจากเครื่อง";
+            tempBase64Image = '';
+
             switchTab('page-home', 0);
+            fetchReviews();
         }
 
-        // สลับหน้าจอแท็บเมนูด้านล่าง
+        function deleteLocalReview(index) {
+            if (confirm('ต้องการลบรีวิวนี้ใช่หรือไม่?')) {
+                let localSaved = JSON.parse(localStorage.getItem('local_reviews') || '[]');
+                if (index < localSaved.length) {
+                    localSaved.splice(index, 1);
+                    localStorage.setItem('local_reviews', JSON.stringify(localSaved));
+                    fetchReviews();
+                    alert('ลบรีวิวเรียบร้อยครับ');
+                } else {
+                    alert('รีวิวนี้มาจาก Google Sheets สามารถเข้าไปลบที่ตารางหลังบ้านได้เลยครับ');
+                }
+            }
+        }
+
         function switchTab(pageId, navIndex) {
             document.querySelectorAll('.page').forEach(page => {
                 page.classList.remove('active');
