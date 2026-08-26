@@ -101,6 +101,18 @@
             50% { opacity: 1; }
             100% { transform: translateY(-70px) scale(1.2); opacity: 0; }
         }
+        /* แต่ง Scrollbar ให้ดูละมุนเข้ากับเว็บ */
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f3e8ff;
+            border-radius: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #c084fc;
+            border-radius: 4px;
+        }
     </style>
 </head>
 <body class="text-brand-text font-sans antialiased">
@@ -188,17 +200,18 @@
                 </div>
 
                 <!-- Review Feed Container -->
-                <div class="space-y-4 mb-6">
-                    <div class="flex justify-between items-center mb-2">
+                <div class="mb-6">
+                    <div class="flex justify-between items-center mb-3">
                         <h3 class="font-bold text-brand-text text-sm flex items-center gap-2">
                             <i class="fa-solid fa-images text-brand-accent"></i> แกลเลอรีรีวิวจากลูกค้า
                         </h3>
                         <span class="text-[10px] text-brand-subtext">กดที่รูปเพื่อดูภาพใหญ่</span>
                     </div>
 
-                    <div id="reviews-feed-container" class="space-y-4">
+                    <!-- จุดแสดงรีวิว (ใส่ความสูงและ Scrollbar เพื่อให้เลื่อนอัตโนมัติได้) -->
+                    <div id="reviews-feed-container" class="space-y-4 max-h-[500px] overflow-y-auto custom-scrollbar pr-1 pb-4">
                         <div class="text-center py-10 text-xs text-brand-subtext">
-                            <i class="fa-solid fa-spinner fa-spin text-lg mb-2"></i> กำลังโหลดรีวิวจากหลังบ้าน...
+                            <i class="fa-solid fa-spinner fa-spin text-lg mb-2"></i> กำลังโหลดรีวิวจากฐานข้อมูล...
                         </div>
                     </div>
                 </div>
@@ -219,7 +232,7 @@
                 <div class="text-center mb-2 z-10 relative">
                     <h1 class="font-outfit text-xs font-medium text-purple-100">Submit Review</h1>
                     <div class="text-xl font-bold mt-1 text-white flex justify-center items-center drop-shadow">
-                        ส่งรีวิว / เพิ่มรีวิว <i class="fa-regular fa-paper-plane ml-2"></i>
+                        เพิ่มรีวิวเข้าระบบ <i class="fa-solid fa-cloud-arrow-up ml-2"></i>
                     </div>
                 </div>
             </div>
@@ -247,7 +260,7 @@
                         <div>
                             <label class="block text-xs font-bold text-brand-text mb-1">แนบรูปภาพรีวิวจากเครื่อง</label>
                             <label class="border-2 border-dashed border-purple-300 rounded-xl p-6 text-center bg-purple-50/40 cursor-pointer hover:bg-purple-50 transition-colors block">
-                                <i class="fa-solid fa-cloud-arrow-up text-brand-accent text-2xl mb-2"></i>
+                                <i class="fa-solid fa-images text-brand-accent text-2xl mb-2"></i>
                                 <p id="file-name-display" class="text-xs font-medium text-brand-text">คลิกเพื่อเลือกรูปภาพจากเครื่อง</p>
                                 <p class="text-[10px] text-brand-subtext mt-1">รองรับไฟล์ JPG, PNG</p>
                                 <input type="file" id="public-image-file" accept="image/*" class="hidden" onchange="previewSelectedImage(this)">
@@ -274,7 +287,7 @@
                 <div class="text-center mb-2 z-10 relative">
                     <h1 class="font-outfit text-xs font-medium text-purple-100">Contact Channels</h1>
                     <div class="text-xl font-bold mt-1 text-white flex justify-center items-center drop-shadow">
-                        ช่องทางติดต่อหลัก & สำรอง <i class="fa-regular fa-comments ml-2"></i>
+                        ช่องทางติดต่อหลัก & สำรอง <i class="fa-solid fa-address-book ml-2"></i>
                     </div>
                 </div>
             </div>
@@ -312,10 +325,10 @@
                 </div>
                 <div class="flex flex-col items-center gap-1 cursor-pointer w-1/3 text-brand-subtext hover:text-brand-accent transition-colors" onclick="switchTab('page-submit', 1)" id="nav-item-1">
                     <i class="fa-solid fa-cloud-arrow-up text-xl mb-0.5"></i>
-                    <span class="text-[9px] font-medium">ส่งรีวิว</span>
+                    <span class="text-[9px] font-medium">เพิ่มรีวิว</span>
                 </div>
                 <div class="flex flex-col items-center gap-1 cursor-pointer w-1/3 text-brand-subtext hover:text-brand-accent transition-colors" onclick="switchTab('page-contact', 2)" id="nav-item-2">
-                    <i class="fa-regular fa-comment-dots text-xl mb-0.5"></i>
+                    <i class="fa-solid fa-address-book text-xl mb-0.5"></i>
                     <span class="text-[9px] font-medium">ติดต่อ</span>
                 </div>
             </div>
@@ -333,11 +346,13 @@
 
     <!-- SCRIPTING -->
     <script>
-        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzYPYKoOpoZw66B62baMHxZmUpP5y0sxuXvKRFLhEiMvHK_F8tRjTX_nG9oFrJNiNNR/exec';
+        // 🌟 อัปเดตลิงก์ API ใหม่ล่าสุดที่ถูกต้องเรียบร้อยแล้ว 🌟
+        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxwHh6pIodH8FpFFlnkWvVu6LMJ_e93iA4-ypmj9D1PfiCqZxADAoBcn7DFzBLkv_B8/exec';
 
         let allReviewsData = [];
         let isAdminLoggedIn = false;
         let tempBase64Image = '';
+        let scrollInterval; // ตัวแปรสำหรับระบบเลื่อนอัตโนมัติ
 
         async function fetchReviews() {
             const feedContainer = document.getElementById('reviews-feed-container');
@@ -353,7 +368,7 @@
                 feedContainer.innerHTML = `
                     <div class="border border-purple-100 rounded-2xl bg-white shadow-sm p-4 text-center space-y-2">
                         <p class="text-xs font-bold text-brand-text">กำลังโหลดข้อมูลรีวิว...</p>
-                        <p class="text-[10px] text-brand-subtext">โปรดตรวจสอบการเชื่อมต่ออินเทอร์เน็ต</p>
+                        <p class="text-[10px] text-brand-subtext">โปรดตรวจสอบการเชื่อมต่ออินเทอร์เน็ตหรือรีเฟรชหน้าเว็บ</p>
                     </div>
                 `;
             }
@@ -391,22 +406,55 @@
                 html += `
                     <div class="review-item ${categoryClass} border border-purple-100 rounded-2xl bg-white shadow-sm p-4 space-y-3">
                         <div class="flex justify-between items-center text-xs text-brand-subtext">
-                            <span class="font-bold text-brand-text"><i class="fa-solid fa-user-circle ${catColor} mr-1"></i> ${item.name || 'คุณลูกค้า'} (${catLabel})</span>
+                            <span class="font-bold text-brand-text"><i class="fa-solid fa-circle-user ${catColor} mr-1"></i> ${item.name || 'คุณลูกค้า'} (${catLabel})</span>
                             <span>${item.date || 'วันนี้'}</span>
                         </div>
                         <p class="text-xs text-brand-text">"${item.message || '-'}"</p>
                         ${item.image ? `
                             <div onclick="openLightbox('${item.image}')" class="rounded-xl overflow-hidden bg-purple-50/50 h-40 flex items-center justify-center border border-purple-100 cursor-pointer hover:opacity-90 transition-opacity">
-                                <img src="${item.image}" alt="Review Image" class="w-full h-full object-cover" onerror="this.parentElement.innerHTML='<i class=\'fa-regular fa-image text-purple-300 text-2xl\'></i>'">
+                                <img src="${item.image}" alt="Review Image" class="w-full h-full object-cover" onerror="this.parentElement.innerHTML='<i class=\'fa-solid fa-image text-purple-300 text-2xl\'></i>'">
                             </div>
                         ` : ''}
                         <div class="admin-controls ${isAdminLoggedIn ? '' : 'hidden'} pt-2 border-t border-purple-50 flex justify-end gap-2">
-                            <span class="text-[10px] text-brand-subtext self-center">จัดการแถวนี้ใน Google Sheets ได้เลย</span>
+                            <span class="text-[10px] text-brand-subtext self-center"><i class="fa-solid fa-database"></i> จัดการแถวนี้ใน Google Sheets</span>
                         </div>
                     </div>
                 `;
             });
             feedContainer.innerHTML = html;
+            
+            // เริ่มการทำงานของระบบเลื่อนอัตโนมัติหลังจากโหลดข้อมูลเสร็จ
+            initAutoScroll();
+        }
+
+        // ระบบเลื่อนฟีดอัตโนมัติ (Auto-scroll)
+        function initAutoScroll() {
+            const feed = document.getElementById('reviews-feed-container');
+            
+            function startScroll() {
+                if(scrollInterval) clearInterval(scrollInterval);
+                scrollInterval = setInterval(() => {
+                    // เลื่อนลงทีละ 1px ถ้าสุดขอบให้เด้งกลับไปบนสุด
+                    if (feed.scrollTop < feed.scrollHeight - feed.clientHeight - 1) {
+                        feed.scrollTop += 1;
+                    } else {
+                        feed.scrollTop = 0; 
+                    }
+                }, 40); // ความเร็วในการเลื่อน (ตัวเลขน้อย = เร็ว)
+            }
+            
+            function stopScroll() {
+                clearInterval(scrollInterval);
+            }
+
+            // เมื่อโหลดเสร็จให้เริ่มเลื่อน
+            startScroll();
+
+            // หยุดเลื่อนเมื่อเอานิ้วแตะ หรือเอาเมาส์ชี้
+            feed.addEventListener('mouseenter', stopScroll);
+            feed.addEventListener('mouseleave', startScroll);
+            feed.addEventListener('touchstart', stopScroll);
+            feed.addEventListener('touchend', startScroll);
         }
 
         window.addEventListener('DOMContentLoaded', fetchReviews);
@@ -449,14 +497,14 @@
                 isAdminLoggedIn = true;
                 document.getElementById('admin-badge').classList.remove('hidden');
                 document.getElementById('admin-action-bar').classList.remove('hidden');
-                document.querySelectorAll('.admin-controls').forEach(el => el.classList.add('hidden'));
+                document.querySelectorAll('.admin-controls').forEach(el => el.classList.remove('hidden'));
                 alert('ยินดีต้อนรับอาเต๋า! เปิดโหมดจัดการรีวิวสำเร็จ');
             } else if (pwd !== null) {
                 alert('รหัสผ่านไม่ถูกต้อง!');
             }
         }
 
-        // ฟังก์ชันส่งรีวิววิ่งตรงลง Google Sheets จริงๆ แบบอัตโนมัติ
+        // ฟังก์ชันส่งข้อมูล POST ตรงเข้า Google Sheets
         async function submitReviewToSheet() {
             const name = document.getElementById('public-name').value.trim();
             const category = document.getElementById('public-category').value;
@@ -487,16 +535,18 @@
                 
                 const result = await response.json();
                 if (result.status === 'success') {
-                    alert('บันทึกรีวิวลง Google Sheets สำเร็จ! ข้อมูลจะแสดงบนหน้าเว็บทันที ✨');
+                    alert('บันทึกรีวิวลง Google Sheets สำเร็จ! ข้อมูลแสดงบนหน้าเว็บทันที ✨');
                     
+                    // ล้างข้อมูลฟอร์ม
                     document.getElementById('public-name').value = '';
                     document.getElementById('public-message').value = '';
                     document.getElementById('public-image-file').value = '';
                     document.getElementById('file-name-display').innerText = "คลิกเพื่อเลือกรูปภาพจากเครื่อง";
                     tempBase64Image = '';
 
+                    // เด้งกลับหน้าแรกและโหลดข้อมูลจากชีตมาโชว์
                     switchTab('page-home', 0);
-                    fetchReviews(); // โหลดข้อมูลใหม่ดึงจากชีตทันที
+                    fetchReviews(); 
                 } else {
                     alert('เกิดข้อผิดพลาดในการบันทึก: ' + result.message);
                 }
