@@ -179,7 +179,7 @@
                     </div>
                 </div>
 
-                <!-- 🌟 ย้ายกล่องแจ้งเตือนช่องทางสำรอง มาไว้ตรงนี้ (ใต้ปุ่มหมวดหมู่ / บนหัวข้อแกลเลอรี) 🌟 -->
+                <!-- กล่องแจ้งเตือนช่องทางสำรอง -->
                 <div class="border border-purple-200 rounded-2xl bg-purple-50/70 p-4 text-center space-y-1.5 shadow-sm mb-6">
                     <p class="font-bold text-brand-text text-xs flex items-center justify-center gap-1.5">
                         <i class="fa-solid fa-shield-halved text-brand-accent"></i> แจ้งเตือนช่องทางสำรอง
@@ -226,7 +226,7 @@
 
             <div class="px-5 -mt-10 relative z-10 pb-8">
                 <div class="bg-white rounded-[24px] shadow-app border border-purple-100 p-6 space-y-4">
-                    <p class="text-xs text-brand-subtext text-center">อัปโหลดรูปภาพรีวิวจากเครื่องและพิมพ์ข้อความได้เลย รีวิวจะเด้งขึ้นหน้าจอทันที</p>
+                    <p class="text-xs text-brand-subtext text-center">อัปโหลดรูปภาพรีวิวจากเครื่องและพิมพ์ข้อความ ข้อมูลจะบันทึกลง Google Sheets ทันที</p>
                     
                     <div class="space-y-3">
                         <div>
@@ -253,8 +253,8 @@
                                 <input type="file" id="public-image-file" accept="image/*" class="hidden" onchange="previewSelectedImage(this)">
                             </label>
                         </div>
-                        <button onclick="submitReviewLocally()" class="w-full bg-brand-accent hover:bg-purple-800 text-white font-semibold py-3.5 rounded-xl shadow-lg shadow-purple-200 transition-all text-sm flex items-center justify-center gap-2 mt-4">
-                            บันทึกและแสดงรีวิวทันที <i class="fa-solid fa-check"></i>
+                        <button id="submit-btn" onclick="submitReviewToSheet()" class="w-full bg-brand-accent hover:bg-purple-800 text-white font-semibold py-3.5 rounded-xl shadow-lg shadow-purple-200 transition-all text-sm flex items-center justify-center gap-2 mt-4">
+                            บันทึกเข้าระบบ Google Sheets <i class="fa-solid fa-check"></i>
                         </button>
                     </div>
                 </div>
@@ -342,33 +342,20 @@
         async function fetchReviews() {
             const feedContainer = document.getElementById('reviews-feed-container');
             try {
-                const controller = new AbortController();
-                const timeoutId = setTimeout(() => controller.abort(), 10000);
-
-                const response = await fetch(SCRIPT_URL, { signal: controller.signal });
-                clearTimeout(timeoutId);
-
+                const response = await fetch(SCRIPT_URL);
                 if (!response.ok) throw new Error('Network response was not ok');
                 
                 const data = await response.json();
-                const localSaved = JSON.parse(localStorage.getItem('local_reviews') || '[]');
-                allReviewsData = [...localSaved, ...data];
-                
+                allReviewsData = data;
                 renderReviews(allReviewsData);
             } catch (error) {
                 console.error('Error fetching reviews:', error);
-                const localSaved = JSON.parse(localStorage.getItem('local_reviews') || '[]');
-                if (localSaved.length > 0) {
-                    allReviewsData = localSaved;
-                    renderReviews(allReviewsData);
-                } else {
-                    feedContainer.innerHTML = `
-                        <div class="border border-purple-100 rounded-2xl bg-white shadow-sm p-4 text-center space-y-2">
-                            <p class="text-xs font-bold text-brand-text">กำลังโหลดข้อมูลรีวิว...</p>
-                            <p class="text-[10px] text-brand-subtext">หากยังไม่แสดงผล ลองกดส่งรีวิวทดสอบด้านล่างได้เลยครับ</p>
-                        </div>
-                    `;
-                }
+                feedContainer.innerHTML = `
+                    <div class="border border-purple-100 rounded-2xl bg-white shadow-sm p-4 text-center space-y-2">
+                        <p class="text-xs font-bold text-brand-text">กำลังโหลดข้อมูลรีวิว...</p>
+                        <p class="text-[10px] text-brand-subtext">โปรดตรวจสอบการเชื่อมต่ออินเทอร์เน็ต</p>
+                    </div>
+                `;
             }
         }
 
@@ -393,7 +380,10 @@
             }
 
             let html = '';
-            reviews.forEach((item, index) => {
+            // กลับด้านให้รีวิวใหม่ล่าสุดขึ้นโชว์ด้านบนสุด
+            const reversedReviews = [...reviews].reverse();
+
+            reversedReviews.forEach((item, index) => {
                 const categoryClass = item.category || 'horo';
                 const catLabel = categoryClass === 'web' ? 'รีวิวทำเว็บ' : 'รีวิวดูดวง';
                 const catColor = categoryClass === 'web' ? 'text-fuchsia-600' : 'text-brand-accent';
@@ -411,7 +401,7 @@
                             </div>
                         ` : ''}
                         <div class="admin-controls ${isAdminLoggedIn ? '' : 'hidden'} pt-2 border-t border-purple-50 flex justify-end gap-2">
-                            <button onclick="deleteLocalReview(${index})" class="text-[10px] bg-red-100 text-red-600 px-2.5 py-1 rounded-lg font-bold"><i class="fa-solid fa-trash"></i> ลบรีวิวนี้</button>
+                            <span class="text-[10px] text-brand-subtext self-center">จัดการแถวนี้ใน Google Sheets ได้เลย</span>
                         </div>
                     </div>
                 `;
@@ -459,58 +449,63 @@
                 isAdminLoggedIn = true;
                 document.getElementById('admin-badge').classList.remove('hidden');
                 document.getElementById('admin-action-bar').classList.remove('hidden');
-                document.querySelectorAll('.admin-controls').forEach(el => el.classList.remove('hidden'));
+                document.querySelectorAll('.admin-controls').forEach(el => el.classList.add('hidden'));
                 alert('ยินดีต้อนรับอาเต๋า! เปิดโหมดจัดการรีวิวสำเร็จ');
             } else if (pwd !== null) {
                 alert('รหัสผ่านไม่ถูกต้อง!');
             }
         }
 
-        function submitReviewLocally() {
+        // ฟังก์ชันส่งรีวิววิ่งตรงลง Google Sheets จริงๆ แบบอัตโนมัติ
+        async function submitReviewToSheet() {
             const name = document.getElementById('public-name').value.trim();
             const category = document.getElementById('public-category').value;
             const message = document.getElementById('public-message').value.trim();
+            const submitBtn = document.getElementById('submit-btn');
 
             if (!name || !message) {
                 alert('กรุณากรอกชื่อและข้อความรีวิวให้ครบถ้วนครับ');
                 return;
             }
 
-            const newReview = {
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> กำลังบันทึกข้อมูล...';
+
+            const payload = {
                 name: name,
                 category: category,
                 message: message,
                 image: tempBase64Image || '',
-                date: 'เพิ่งรีวิวสดๆร้อนๆ'
+                date: 'วันนี้'
             };
 
-            let localSaved = JSON.parse(localStorage.getItem('local_reviews') || '[]');
-            localSaved.unshift(newReview);
-            localStorage.setItem('local_reviews', JSON.stringify(localSaved));
+            try {
+                const response = await fetch(SCRIPT_URL, {
+                    method: 'POST',
+                    body: JSON.stringify(payload)
+                });
+                
+                const result = await response.json();
+                if (result.status === 'success') {
+                    alert('บันทึกรีวิวลง Google Sheets สำเร็จ! ข้อมูลจะแสดงบนหน้าเว็บทันที ✨');
+                    
+                    document.getElementById('public-name').value = '';
+                    document.getElementById('public-message').value = '';
+                    document.getElementById('public-image-file').value = '';
+                    document.getElementById('file-name-display').innerText = "คลิกเพื่อเลือกรูปภาพจากเครื่อง";
+                    tempBase64Image = '';
 
-            alert('เพิ่มรีวิวสำเร็จ! รีวิวเด้งขึ้นหน้าจอเว็บเรียบร้อยครับ ✨');
-            
-            document.getElementById('public-name').value = '';
-            document.getElementById('public-message').value = '';
-            document.getElementById('public-image-file').value = '';
-            document.getElementById('file-name-display').innerText = "คลิกเพื่อเลือกรูปภาพจากเครื่อง";
-            tempBase64Image = '';
-
-            switchTab('page-home', 0);
-            fetchReviews();
-        }
-
-        function deleteLocalReview(index) {
-            if (confirm('ต้องการลบรีวิวนี้ใช่หรือไม่?')) {
-                let localSaved = JSON.parse(localStorage.getItem('local_reviews') || '[]');
-                if (index < localSaved.length) {
-                    localSaved.splice(index, 1);
-                    localStorage.setItem('local_reviews', JSON.stringify(localSaved));
-                    fetchReviews();
-                    alert('ลบรีวิวเรียบร้อยครับ');
+                    switchTab('page-home', 0);
+                    fetchReviews(); // โหลดข้อมูลใหม่ดึงจากชีตทันที
                 } else {
-                    alert('รีวิวนี้มาจาก Google Sheets สามารถเข้าไปลบที่ตารางหลังบ้านได้เลยครับ');
+                    alert('เกิดข้อผิดพลาดในการบันทึก: ' + result.message);
                 }
+            } catch (error) {
+                console.error('Error submitting:', error);
+                alert('ไม่สามารถเชื่อมต่อเพื่อบันทึกข้อมูลได้ กรุณาลองใหม่อีกครั้ง');
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = 'บันทึกเข้าระบบ Google Sheets <i class="fa-solid fa-check"></i>';
             }
         }
 
