@@ -3,386 +3,420 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AhTao Mu-Space - Review & Credit</title>
+    <title>AhTao Mu-Space - Review & Credit ✨</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     fontFamily: {
-                        sans: ['Prompt', 'sans-serif'],
+                        sans: ['Cloud', 'Kanit', 'sans-serif'],
                         outfit: ['Outfit', 'sans-serif'],
+                        seasons: ['The Seasons', 'Playfair Display', 'serif'],
                     },
                     colors: {
                         brand: {
-                            dark: '#4c1d95',     
+                            dark: '#3b1c87',     
                             main: '#8b5cf6',     
                             light: '#f3e8ff',    
-                            text: '#2e1065',     
-                            subtext: '#6b21a8',
-                            accent: '#7c3aed',
+                            text: '#4a2175',     
+                            subtext: '#7e22ce',
+                            accent: '#d946ef',
                             gold: '#fbbf24'
                         }
-                    },
-                    boxShadow: {
-                        'app': '0 -10px 40px -15px rgba(139, 92, 246, 0.2), 0 10px 40px -15px rgba(139, 92, 246, 0.2)',
-                        'nav': '0 -5px 20px -5px rgba(139, 92, 246, 0.25)',
-                        'glow-purple': '0 0 20px 2px rgba(168, 85, 247, 0.35)',
-                        'glow-amber': '0 0 15px 1px rgba(251, 191, 36, 0.45)'
                     }
                 }
             }
         }
     </script>
     <style>
+        @font-face { font-family: 'Cloud'; src: local('Cloud'); font-display: swap; }
+        @font-face { font-family: 'The Seasons'; src: local('The Seasons'); font-display: swap; }
+
+        :root {
+            --c-purple-dark: #3b1c87; 
+            --c-text-main: #4a2175;   
+        }
+
         body {
-            background-color: #FAFAFA;
-            -webkit-tap-highlight-color: transparent;
+            font-family: 'Cloud', 'Kanit', sans-serif; 
+            background: linear-gradient(135deg, #2e1065, #5c2092, #9333ea, #c084fc, #5c2092);
+            background-size: 300% 300%;
+            animation: gradientBG 20s ease infinite;
+            color: var(--c-text-main);
+            margin: 0; padding: 0; overflow-x: hidden; min-height: 100vh;
+            -webkit-tap-highlight-color: transparent; font-size: 16px;
         }
-        .app-container {
-            max-width: 430px;
-            margin: 0 auto;
-            min-height: 100vh;
-            background-color: #fdfcff;
-            position: relative;
-            box-shadow: 0 0 20px rgba(0,0,0,0.05);
-            overflow-x: hidden;
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
-        .banner-bg {
-            background-image: url('แบนเนอร์.PNG');
-            background-size: cover;
-            background-position: center;
-            position: relative;
+
+        /* ---------------- Floating Magic Elements ---------------- */
+        .magic-element {
+            position: fixed; pointer-events: none; z-index: 0;
+            opacity: 0.25; text-shadow: 0 0 15px currentColor;
+            animation: floatMagic linear infinite;
         }
-        .banner-bg::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(180deg, rgba(46, 16, 101, 0.15) 0%, rgba(46, 16, 101, 0.45) 100%);
+        @keyframes floatMagic {
+            0% { transform: translateY(100vh) rotate(0deg) scale(0.8); opacity: 0; }
+            20% { opacity: 0.35; }
+            80% { opacity: 0.35; }
+            100% { transform: translateY(-20vh) rotate(360deg) scale(1.3); opacity: 0; }
         }
-        .hero-image-placeholder {
-            width: 140px;
-            height: 140px;
-            background-color: white;
-            border-radius: 50%;
-            border: 4px solid #f3e8ff;
-            box-shadow: 0 10px 25px rgba(107, 33, 168, 0.25);
-            margin: 0 auto;
-            position: relative;
-            z-index: 20;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
+
+        /* ---------------- Typography ---------------- */
+        .font-seasons { font-family: 'The Seasons', 'Playfair Display', serif; }
+        .animated-gradient-text {
+            background: linear-gradient(270deg, #b794f4, #f687b3, #fbbf24, #f687b3, #b794f4);
+            background-size: 300% 300%; -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            animation: textGradientShift 6s ease infinite;
         }
+        @keyframes textGradientShift { 0% {background-position:0% 50%;} 50% {background-position:100% 50%;} 100% {background-position:0% 50%;} }
+        .glow-text { text-shadow: 0 0 10px rgba(251, 191, 36, 0.5); }
+
+        /* ---------------- Cards & Glow ---------------- */
+        .card-main {
+            background-color: #faf5ff; 
+            backdrop-filter: blur(10px);
+            border-radius: 1.5rem;
+            box-shadow: 0 15px 35px rgba(20, 5, 45, 0.4);
+            border: 1px solid #f3e8ff;
+            position: relative; z-index: 10;
+        }
+        .glow-effect {
+            box-shadow: 0 0 25px rgba(251, 191, 36, 0.6), inset 0 0 15px rgba(236, 72, 153, 0.4);
+            border: 3px solid #fff;
+        }
+
+        .purple-pill { background: linear-gradient(90deg, #9333ea, #db2777); color: white; border-radius: 1rem; padding: 8px 15px; text-align: center; font-weight: bold; }
+
+        /* ---------------- Forms & Buttons ---------------- */
+        .form-group { margin-bottom: 16px; text-align: left; }
+        .form-group label { display: block; font-size: 15px; color: var(--c-purple-dark); margin-bottom: 6px; font-weight: bold; }
+        .form-control {
+            width: 100%; padding: 12px 14px; background: #fffcfd; border: 2px solid #e9d5ff; border-radius: 1rem;
+            color: var(--c-text-main); font-family: 'Cloud', 'Kanit', sans-serif; font-size: 15px; outline: none; transition: all 0.2s;
+        }
+        .form-control:focus { background: #fff; border-color: #d946ef; box-shadow: 0 0 0 4px rgba(217, 70, 239, 0.15); transform: translateY(-1px); }
+
+        .btn-action {
+            display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+            width: 100%; padding: 14px 20px; border: none; border-radius: 1rem; cursor: pointer;
+            font-family: 'Cloud', 'Kanit', sans-serif; font-size: 18px; color: #fff; font-weight: bold;
+            background: linear-gradient(90deg, #9333ea, #db2777); box-shadow: 0 4px 15px rgba(219, 39, 119, 0.4); transition: all 0.2s; margin-top: 10px;
+        }
+        .btn-action:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 8px 25px rgba(219, 39, 119, 0.5); }
+        .btn-action:disabled { opacity: 0.7; cursor: not-allowed; transform: none; box-shadow: none; }
+
+        /* ---------------- Pages & Layout ---------------- */
         .page {
             display: none;
-            animation: fadeIn 0.3s ease-out forwards;
-            padding-bottom: 90px;
+            animation: fadeIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
         }
-        .page.active {
-            display: block;
-        }
+        .page.active { display: block; }
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
+            from { opacity: 0; transform: translateY(15px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        .floating-shape {
-            position: absolute;
-            animation: floatUp 4s ease-in-out infinite;
-            opacity: 0.7;
-            z-index: 15;
-            pointer-events: none;
+
+        .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: #fae8ff; border-radius: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #d946ef; border-radius: 4px; }
+
+        /* ---------------- Toast & Loader ---------------- */
+        .toast {
+            position: fixed; bottom: 100px; left: 50%; transform: translateX(-50%) translateY(200px);
+            background: linear-gradient(90deg, #7e22ce, #db2777); color: white; padding: 14px 28px; border-radius: 40px; 
+            font-size: 15px; z-index: 100001; pointer-events: none; box-shadow: 0 10px 30px rgba(0,0,0, 0.4);
+            transition: transform .4s cubic-bezier(.34,1.56,.64,1); visibility: hidden; border: 2px solid #fff; font-weight: bold; white-space: nowrap;
         }
-        @keyframes floatUp {
-            0% { transform: translateY(0px) scale(0.8); opacity: 0; }
-            50% { opacity: 1; }
-            100% { transform: translateY(-70px) scale(1.2); opacity: 0; }
-        }
-        .custom-scrollbar::-webkit-scrollbar {
-            width: 4px;
-        }
-        .custom-scrollbar::-webkit-scrollbar-track {
-            background: #f3e8ff;
-            border-radius: 4px;
-        }
-        .custom-scrollbar::-webkit-scrollbar-thumb {
-            background: #d8b4fe;
-            border-radius: 4px;
-        }
+        .toast.on { transform: translateX(-50%) translateY(0); visibility: visible; }
     </style>
 </head>
-<body class="text-brand-text font-sans antialiased">
+<body class="antialiased text-center relative">
 
-    <div class="app-container flex flex-col">
+    <!-- 🌟 ไอคอนลอยเวทมนตร์ (มิติสีตัดเหลืองทอง-ฟ้า-ชมพู) 🌟 -->
+    <div class="magic-element text-3xl text-yellow-300" style="left: 10%; animation-duration: 12s;">✦</div>
+    <div class="magic-element text-2xl text-blue-300" style="left: 85%; animation-duration: 15s; animation-delay: 2s;">🌙</div>
+    <div class="magic-element text-4xl text-pink-300" style="left: 45%; animation-duration: 18s; animation-delay: 4s;">✨</div>
+    <div class="magic-element text-xl text-yellow-200"  style="left: 20%; animation-duration: 10s; animation-delay: 1s;">🔮</div>
+    <div class="magic-element text-2xl text-pink-200" style="left: 75%; animation-duration: 14s; animation-delay: 3s;">✦</div>
+    <div class="magic-element text-xl text-blue-200"  style="left: 55%; animation-duration: 11s; animation-delay: 5s;">⭐</div>
+
+    <!-- หน้าต่าง Loading แบบเวทมนตร์ -->
+    <div id="loading-overlay" class="fixed inset-0 bg-[#1e0b3b]/85 backdrop-blur-md z-[99999] hidden flex-col items-center justify-center transition-opacity">
+        <div class="text-7xl animate-bounce mb-6 filter drop-shadow-[0_0_20px_rgba(251,191,36,0.8)]">🔮</div>
+        <div class="text-[#fbbf24] font-bold text-xl tracking-wide font-seasons drop-shadow-md" id="loading-text">กำลังโหลดเวทมนตร์...</div>
+    </div>
+
+    <!-- แจ้งเตือน Toast -->
+    <div class="toast" id="toast">✨ ส่งรีวิวเรียบร้อย ขอบคุณค่ะ! ✨</div>
+
+    <main class="max-w-[480px] mx-auto pt-6 pb-28 relative px-4">
         
-        <!-- ==================== PAGE 1: HOME ==================== -->
+        <!-- ==================== PAGE 1: HOME (FEED) ==================== -->
         <div id="page-home" class="page active">
-            <div class="banner-bg pt-8 px-6 pb-24 relative rounded-b-[40px] overflow-hidden">
-                <div class="floating-shape text-amber-300 text-xs" style="top: 20%; left: 10%; animation-delay: 0s;"><i class="fa-solid fa-star"></i></div>
-                <div class="floating-shape text-pink-400 text-sm" style="top: 60%; left: 85%; animation-delay: 1.5s;"><i class="fa-solid fa-heart"></i></div>
-                <div class="floating-shape text-amber-200 text-sm" style="top: 30%; left: 80%; animation-delay: 2.2s;"><i class="fa-solid fa-shield"></i></div>
-                <div class="floating-shape text-purple-300 text-xs" style="top: 75%; left: 20%; animation-delay: 0.8s;"><i class="fa-solid fa-certificate"></i></div>
+            <!-- กล่องโปรไฟล์แบนเนอร์เวทมนตร์ -->
+            <div class="card-main mb-6 relative p-0 overflow-hidden" style="border:none;">
+                <div class="w-full h-[140px] relative">
+                    <div class="absolute inset-0" style="background-image: url('แบนเนอร์.PNG'); background-size: cover; background-position: center; filter: blur(1px) opacity(0.95);"></div>
+                    <div class="absolute inset-0" style="background: linear-gradient(to bottom, rgba(250,245,255,0) 0%, rgba(250,245,255,0) 50%, #faf5ff 100%);"></div>
+                </div>
 
-                <div class="flex justify-between items-center mb-6 relative z-10">
-                    <div class="text-white font-outfit text-xl font-bold tracking-wide flex flex-col drop-shadow-md">
-                        AHTAO MU-SPACE
-                        <span class="text-xs font-medium tracking-widest text-amber-200 mt-0.5">Review & Credit</span>
+                <div class="relative cursor-pointer group absolute top-4 right-4 z-20" onclick="promptAdminPassword()" title="โหมดแอดมินจัดการรีวิว">
+                    <div class="w-9 h-9 rounded-full border-2 border-amber-300 overflow-hidden glow-effect bg-white flex items-center justify-center transition-all hover:scale-110">
+                        <img src="Ahtao Mu-space พื้นขาว.png" alt="Admin" class="w-full h-full object-cover" onerror="this.src='โลโก้.png'">
                     </div>
-                    <div class="relative cursor-pointer group" onclick="promptAdminPassword()" title="โหมดแอดมินจัดการรีวิว">
-                        <div class="w-10 h-10 rounded-full border-2 border-amber-300 overflow-hidden shadow-glow-amber bg-white flex items-center justify-center transition-all hover:scale-105">
-                            <img src="Ahtao Mu-space.png" alt="Admin Icon" class="w-full h-full object-cover" onerror="this.src='โลโก้.png'">
-                        </div>
-                        <span id="admin-badge" class="absolute -top-1 -right-1 w-3 h-3 bg-green-500 rounded-full border-2 border-white hidden"></span>
+                    <span id="admin-badge" class="absolute -top-1 -right-1 w-3 h-3 bg-green-500 rounded-full border-2 border-white hidden"></span>
+                </div>
+
+                <div class="px-5 pb-6 flex flex-col items-center relative -mt-12 text-center z-10">
+                    <div class="w-[90px] h-[90px] shrink-0 bg-white rounded-full flex items-center justify-center relative overflow-hidden glow-effect mb-3">
+                        <img src="โลโก้.png" alt="Logo" class="w-full h-full object-cover" onerror="this.src='https://i.postimg.cc/Ssm1y82k/att-wk7qrx-RHAp1Ej-HFxr8ZWJOqko-Id-NEvk-Y6mf5-n2Id-W4.jpg'">
                     </div>
-                </div>
-                
-                <div class="text-center mb-2 z-10 relative">
-                    <h1 class="text-base font-semibold text-white drop-shadow-md flex justify-center items-center">
-                        ศูนย์รวมรีวิวและความน่าเชื่อถือ 🌸
-                    </h1>
-                    <p class="text-[11px] font-medium text-purple-100 mt-1 drop-shadow">รีวิวจากผู้ใช้บริการจริง ทั้งดูดวง, วอลเปเปอร์ และงานเว็บ</p>
-                </div>
-                
-                <div class="hero-image-placeholder mt-4 mb-[-70px]">
-                    <img src="โลโก้.png" alt="AhTao Logo" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='https://i.postimg.cc/Ssm1y82k/att-wk7qrx-RHAp1Ej-HFxr8ZWJOqko-Id-NEvk-Y6mf5-n2Id-W4.jpg'">
+                    
+                    <h1 class="text-[24px] sm:text-[28px] mb-0 animated-gradient-text font-seasons font-bold truncate leading-tight w-full glow-text">AhTao Mu-Space</h1>
+                    <span class="text-xs font-bold tracking-widest text-[#d946ef] mt-0.5 uppercase bg-white/50 px-3 py-0.5 rounded-full border border-[#f3e8ff]">Review & Credit</span>
+
+                    <p class="text-[14px] mt-3 font-seasons font-bold text-[#c026d3]">“ ศูนย์รวมรีวิวและความน่าเชื่อถือ 🌸 ”</p>
                 </div>
             </div>
 
-            <div class="bg-white rounded-t-[35px] -mt-12 relative z-10 pt-10 px-5 shadow-app pb-6">
-                
-                <div id="admin-action-bar" class="mb-6 hidden">
-                    <button onclick="switchTab('page-submit', 1)" class="w-full bg-emerald-500 hover:bg-emerald-600 text-white font-semibold py-3 rounded-2xl shadow-md text-xs flex items-center justify-center gap-2 transition-colors">
-                        <i class="fa-solid fa-circle-plus text-sm"></i> เพิ่มรีวิวใหม่เข้าระบบ (แอดมิน)
+            <!-- กล่องคอนเทนต์หลัก -->
+            <div class="card-main p-5 mb-6">
+                <div id="admin-action-bar" class="mb-5 hidden">
+                    <button onclick="switchTab('page-submit', 1)" class="w-full bg-gradient-to-r from-emerald-400 to-emerald-600 text-white font-bold py-3 rounded-2xl shadow-md text-[14px] flex items-center justify-center gap-2 hover:scale-[1.02] transition-transform">
+                        <i class="fa-solid fa-circle-plus"></i> เพิ่มรีวิวใหม่เข้าระบบ (แอดมิน)
                     </button>
                 </div>
 
-                <div class="text-center mb-4 mt-2">
-                    <span class="text-brand-accent font-semibold text-[11px] tracking-wide bg-purple-50/80 px-4 py-2 rounded-full inline-block border border-purple-200 shadow-sm">
-                        ✨ เลือกดูหมวดหมู่รีวิว ✨
-                    </span>
-                </div>
+                <div class="purple-pill text-[15px] mb-4 inline-block px-6 glow-effect w-full text-center">✨ เลือกดูหมวดหมู่รีวิว ✨</div>
                 
                 <div class="grid grid-cols-3 gap-3 mb-6">
                     <div class="flex flex-col items-center gap-2 cursor-pointer group" onclick="filterReviews('all')">
-                        <div class="w-14 h-14 rounded-[20px] bg-purple-50 group-hover:bg-purple-100 flex items-center justify-center text-brand-accent text-xl shadow-sm border border-purple-100 transition-all group-hover:-translate-y-1">
+                        <div class="w-[50px] h-[50px] rounded-[18px] bg-[#fdf4ff] group-hover:bg-[#fae8ff] flex items-center justify-center text-[#d946ef] text-xl shadow-sm border-2 border-[#f3e8ff] group-hover:border-[#d946ef] transition-all group-hover:-translate-y-1">
                             <i class="fa-solid fa-border-all"></i>
                         </div>
-                        <span class="text-[10px] text-center text-brand-text font-medium leading-tight">ทั้งหมด</span>
+                        <span class="text-[11px] text-center text-brand-text font-bold leading-tight">ทั้งหมด</span>
                     </div>
                     <div class="flex flex-col items-center gap-2 cursor-pointer group" onclick="filterReviews('horo')">
-                        <div class="w-14 h-14 rounded-[20px] bg-amber-50 group-hover:bg-amber-100 flex items-center justify-center text-amber-500 text-xl shadow-sm border border-amber-100 transition-all group-hover:-translate-y-1">
+                        <div class="w-[50px] h-[50px] rounded-[18px] bg-amber-50 group-hover:bg-amber-100 flex items-center justify-center text-amber-500 text-xl shadow-sm border-2 border-amber-100 group-hover:border-amber-400 transition-all group-hover:-translate-y-1">
                             <i class="fa-solid fa-wand-magic-sparkles"></i>
                         </div>
-                        <span class="text-[10px] text-center text-brand-text font-medium leading-tight">ดูดวง & มู</span>
+                        <span class="text-[11px] text-center text-brand-text font-bold leading-tight">ดูดวง & มู</span>
                     </div>
                     <div class="flex flex-col items-center gap-2 cursor-pointer group" onclick="filterReviews('web')">
-                        <div class="w-14 h-14 rounded-[20px] bg-fuchsia-50 group-hover:bg-fuchsia-100 flex items-center justify-center text-fuchsia-500 text-xl shadow-sm border border-fuchsia-100 transition-all group-hover:-translate-y-1">
+                        <div class="w-[50px] h-[50px] rounded-[18px] bg-blue-50 group-hover:bg-blue-100 flex items-center justify-center text-blue-500 text-xl shadow-sm border-2 border-blue-100 group-hover:border-blue-400 transition-all group-hover:-translate-y-1">
                             <i class="fa-solid fa-laptop-code"></i>
                         </div>
-                        <span class="text-[10px] text-center text-brand-text font-medium leading-tight">รับทำเว็บ</span>
+                        <span class="text-[11px] text-center text-brand-text font-bold leading-tight">รับทำเว็บ</span>
                     </div>
                 </div>
 
-                <div class="border border-purple-100 rounded-2xl bg-purple-50/50 p-4 text-center space-y-1.5 shadow-sm mb-6">
-                    <p class="font-bold text-brand-text text-xs flex items-center justify-center gap-1.5">
-                        <i class="fa-solid fa-shield-cat text-brand-accent text-sm"></i> แจ้งเตือนช่องทางสำรอง
+                <div class="border-2 border-dashed border-[#e9d5ff] rounded-2xl bg-[#fffcfd] p-4 text-center space-y-1.5 shadow-sm mb-6">
+                    <p class="font-bold text-brand-accent text-[13px] flex items-center justify-center gap-1.5">
+                        <i class="fa-solid fa-shield-cat text-[15px]"></i> แจ้งเตือนช่องทางสำรอง
                     </p>
-                    <p class="text-[11px] text-brand-subtext leading-relaxed">หากเฟสหลักมีปัญหา ติดต่ออาเต๋าได้ทาง Line OA หรือ Instagram หลักนี้ได้ตลอดเวลา การันตีตัวจริงไม่มีหาย!</p>
+                    <p class="text-[12px] text-brand-subtext leading-relaxed">หากเฟสหลักมีปัญหา ติดต่ออาเต๋าได้ทาง Line OA หรือ Instagram หลักนี้ได้ตลอดเวลา การันตีตัวจริงไม่มีหาย!</p>
                 </div>
 
-                <div class="mb-6">
+                <div class="text-left">
                     <div class="flex justify-between items-center mb-3 px-1">
-                        <h3 class="font-bold text-brand-text text-sm flex items-center gap-2">
-                            <i class="fa-solid fa-images text-brand-accent"></i> เสียงตอบรับจากลูกค้า 💖
+                        <h3 class="font-bold text-brand-text text-[15px] flex items-center gap-2">
+                            <i class="fa-solid fa-images text-[#d946ef]"></i> เสียงตอบรับจากลูกค้า 💖
                         </h3>
-                        <span class="text-[10px] text-brand-subtext bg-gray-100 px-2 py-1 rounded-lg">กดที่รูปเพื่อซูม</span>
+                        <span class="text-[10px] text-white bg-[#c026d3] px-2 py-1 rounded-full font-bold">กดที่รูปเพื่อซูม</span>
                     </div>
 
-                    <div id="reviews-feed-container" class="space-y-4 max-h-[500px] overflow-y-auto custom-scrollbar pr-1 pb-4">
-                        
+                    <div id="reviews-feed-container" class="space-y-4 max-h-[500px] overflow-y-auto custom-scrollbar pr-2 pb-4">
                         <!-- Shimmer Loading Effect -->
                         <div class="animate-pulse space-y-4 pt-2">
-                            <div class="border border-purple-50 rounded-[24px] bg-white p-5 space-y-4 shadow-sm">
+                            <div class="border-2 border-[#f3e8ff] rounded-[20px] bg-white p-5 space-y-4 shadow-sm">
                                 <div class="flex justify-between items-center">
-                                    <div class="h-4 bg-purple-100/70 rounded-full w-1/3"></div>
+                                    <div class="h-4 bg-purple-100 rounded-full w-1/3"></div>
                                     <div class="h-3 bg-purple-50 rounded-full w-1/5"></div>
                                 </div>
                                 <div class="space-y-2">
-                                    <div class="h-3 bg-purple-50/80 rounded-full w-full"></div>
-                                    <div class="h-3 bg-purple-50/80 rounded-full w-5/6"></div>
+                                    <div class="h-3 bg-purple-50 rounded-full w-full"></div>
+                                    <div class="h-3 bg-purple-50 rounded-full w-5/6"></div>
                                 </div>
                                 <div class="h-32 bg-purple-50 rounded-2xl w-full mt-2"></div>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- ==================== PAGE 2: SUBMIT REVIEW FORM ==================== -->
+        <!-- ==================== PAGE 2: SUBMIT REVIEW ==================== -->
         <div id="page-submit" class="page">
-            <div class="banner-bg pt-8 px-6 pb-20 relative rounded-b-[40px]">
-                <div class="flex justify-between items-center mb-6">
-                    <div class="w-8 h-8 bg-white/80 rounded-full flex items-center justify-center text-brand-accent backdrop-blur-md shadow-sm cursor-pointer hover:bg-white transition-colors" onclick="switchTab('page-home', 0)">
-                        <i class="fa-solid fa-chevron-left text-sm"></i>
-                    </div>
-                    <div class="text-white font-outfit text-xl font-bold tracking-wide drop-shadow">AHTAO MU-SPACE</div>
-                    <div class="w-8"></div>
+            <div class="card-main mb-6 relative p-0 overflow-hidden" style="border:none;">
+                <div class="w-full h-[100px] relative">
+                    <div class="absolute inset-0" style="background-image: url('แบนเนอร์.PNG'); background-size: cover; background-position: center; filter: blur(1px) opacity(0.95);"></div>
+                    <div class="absolute inset-0" style="background: linear-gradient(to bottom, rgba(250,245,255,0) 0%, rgba(250,245,255,0) 50%, #faf5ff 100%);"></div>
                 </div>
-                <div class="text-center mb-2 z-10 relative">
-                    <h1 class="font-outfit text-xs font-medium text-purple-100">Submit Review</h1>
-                    <div class="text-xl font-bold mt-1 text-white flex justify-center items-center drop-shadow">
-                        เพิ่มรีวิวเข้าระบบ ✨
+                <div class="px-5 pb-5 flex flex-col items-center relative -mt-10 text-center z-10">
+                    <div class="w-[70px] h-[70px] shrink-0 bg-white rounded-full flex items-center justify-center relative overflow-hidden glow-effect mb-2">
+                        <img src="Ahtao Mu-space พื้นขาว.png" alt="Logo" class="w-full h-full object-cover" onerror="this.src='โลโก้.png'">
                     </div>
+                    <h1 class="text-[20px] animated-gradient-text font-seasons font-bold glow-text m-0">Submit Review</h1>
+                    <div class="text-[16px] font-bold mt-1 text-[#c026d3]">เพิ่มรีวิวเข้าระบบ ✨</div>
                 </div>
             </div>
 
-            <div class="px-5 -mt-10 relative z-10 pb-8">
-                <div class="bg-white rounded-[32px] shadow-app border border-purple-50 p-6 space-y-5">
-                    <p class="text-[11px] text-brand-subtext text-center font-medium bg-purple-50/50 py-2 rounded-xl">ขอบคุณที่ไว้วางใจใช้บริการครับ! ส่งความประทับใจของคุณได้ที่นี่เลย 💖</p>
-                    
-                    <div class="space-y-4">
-                        <div>
-                            <label class="block text-xs font-bold text-brand-text mb-1.5">ชื่อผู้รีวิว / นามแฝง 👤</label>
-                            <input type="text" id="public-name" placeholder="เช่น คุณมิน หรือ A***" class="w-full px-4 py-3 rounded-2xl border-2 border-purple-50 text-xs focus:outline-none focus:border-brand-accent bg-gray-50/50 transition-colors">
-                        </div>
-                        
-                        <div>
-                            <label class="block text-xs font-bold text-brand-text mb-1.5">ประเภทบริการ 🔮</label>
-                            <select id="public-category" class="w-full px-4 py-3 rounded-2xl border-2 border-purple-50 text-xs focus:outline-none focus:border-brand-accent bg-gray-50/50 transition-colors appearance-none">
-                                <option value="horo">ดูดวง / ไพ่ยิปซี / วอลเปเปอร์</option>
-                                <option value="web">รับทำเว็บไซต์ / ระบบหลังบ้าน</option>
-                            </select>
-                        </div>
+            <div class="card-main p-6 text-left">
+                <p class="text-[12px] text-[#7e22ce] text-center font-bold bg-[#fdf4ff] border border-[#f3e8ff] py-2.5 rounded-xl mb-5 shadow-sm">ขอบคุณที่ไว้วางใจใช้บริการครับ! ส่งความประทับใจของคุณได้ที่นี่เลย 💖</p>
+                
+                <div class="form-group">
+                    <label>ชื่อผู้รีวิว / นามแฝง 👤 *</label>
+                    <input type="text" id="public-name" placeholder="เช่น คุณมิน หรือ A***" class="form-control">
+                </div>
+                
+                <div class="form-group">
+                    <label>ประเภทบริการ 🔮 *</label>
+                    <select id="public-category" class="form-control appearance-none">
+                        <option value="horo">ดูดวง / ไพ่ยิปซี / วอลเปเปอร์</option>
+                        <option value="web">รับทำเว็บไซต์ / ระบบหลังบ้าน</option>
+                    </select>
+                </div>
 
-                        <div>
-                            <label class="block text-xs font-bold text-brand-text mb-2">ช่องทางที่ใช้บริการ 📱 <span class="font-normal text-brand-subtext text-[10px]">(ให้เรารู้ว่ามาจากไหนน้า)</span></label>
-                            <div class="grid grid-cols-3 gap-2">
-                                <label class="flex flex-col items-center justify-center gap-1.5 p-2.5 border-2 border-purple-50 rounded-2xl cursor-pointer bg-white has-[:checked]:border-blue-400 has-[:checked]:bg-blue-50 transition-all shadow-sm group">
-                                    <input type="radio" name="source" value="facebook" class="hidden" checked>
-                                    <i class="fa-brands fa-facebook text-blue-500 text-xl group-hover:scale-110 transition-transform"></i>
-                                    <span class="text-[10px] font-bold text-gray-600 group-has-[:checked]:text-blue-600">Facebook</span>
-                                </label>
-                                <label class="flex flex-col items-center justify-center gap-1.5 p-2.5 border-2 border-purple-50 rounded-2xl cursor-pointer bg-white has-[:checked]:border-green-400 has-[:checked]:bg-green-50 transition-all shadow-sm group">
-                                    <input type="radio" name="source" value="line" class="hidden">
-                                    <i class="fa-brands fa-line text-green-500 text-xl group-hover:scale-110 transition-transform"></i>
-                                    <span class="text-[10px] font-bold text-gray-600 group-has-[:checked]:text-green-600">Line</span>
-                                </label>
-                                <label class="flex flex-col items-center justify-center gap-1.5 p-2.5 border-2 border-purple-50 rounded-2xl cursor-pointer bg-white has-[:checked]:border-pink-400 has-[:checked]:bg-pink-50 transition-all shadow-sm group">
-                                    <input type="radio" name="source" value="instagram" class="hidden">
-                                    <i class="fa-brands fa-instagram text-pink-500 text-xl group-hover:scale-110 transition-transform"></i>
-                                    <span class="text-[10px] font-bold text-gray-600 group-has-[:checked]:text-pink-600">Instagram</span>
-                                </label>
-                            </div>
-                        </div>
-
-                        <div>
-                            <label class="block text-xs font-bold text-brand-text mb-1.5">ข้อความรีวิวสั้นๆ ✍️</label>
-                            <textarea id="public-message" rows="3" placeholder="พิมพ์ความรู้สึกหรือผลลัพธ์หลังใช้บริการ..." class="w-full px-4 py-3 rounded-2xl border-2 border-purple-50 text-xs focus:outline-none focus:border-brand-accent bg-gray-50/50 transition-colors custom-scrollbar"></textarea>
-                        </div>
-                        
-                        <div>
-                            <label class="block text-xs font-bold text-brand-text mb-1.5">แนบรูปภาพรีวิว (ถ้ามี) 🖼️</label>
-                            <label class="border-2 border-dashed border-purple-200 rounded-2xl p-6 text-center bg-purple-50/30 cursor-pointer hover:bg-purple-100 transition-colors block group">
-                                <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center mx-auto mb-2 shadow-sm group-hover:scale-105 transition-transform">
-                                    <i class="fa-solid fa-image text-brand-accent text-xl"></i>
-                                </div>
-                                <p id="file-name-display" class="text-xs font-bold text-brand-text">คลิกเพื่อเลือกรูปภาพ</p>
-                                <p class="text-[10px] text-brand-subtext mt-1">รองรับไฟล์ JPG, PNG</p>
-                                <input type="file" id="public-image-file" accept="image/*" class="hidden" onchange="previewSelectedImage(this)">
-                            </label>
-                        </div>
-                        
-                        <button id="submit-btn" onclick="submitReviewToSheet()" class="w-full bg-brand-accent hover:bg-purple-700 text-white font-bold py-4 rounded-2xl shadow-glow-purple transition-all text-sm flex items-center justify-center gap-2 mt-2 hover:-translate-y-1">
-                            ส่งรีวิวให้เลยยย! <i class="fa-solid fa-paper-plane"></i>
-                        </button>
+                <div class="form-group">
+                    <label class="mb-2">ช่องทางที่ใช้บริการ 📱 <span class="font-normal text-[11px] opacity-80">(ให้เรารู้ว่ามาจากไหนน้า)</span></label>
+                    <div class="grid grid-cols-3 gap-2">
+                        <label class="flex flex-col items-center justify-center gap-1.5 p-3 border-2 border-[#f3e8ff] rounded-2xl cursor-pointer bg-white has-[:checked]:border-blue-400 has-[:checked]:bg-blue-50 transition-all shadow-sm group">
+                            <input type="radio" name="source" value="facebook" class="hidden" checked>
+                            <i class="fa-brands fa-facebook text-blue-500 text-[24px] group-hover:scale-110 transition-transform"></i>
+                            <span class="text-[11px] font-bold text-gray-500 group-has-[:checked]:text-blue-600">Facebook</span>
+                        </label>
+                        <label class="flex flex-col items-center justify-center gap-1.5 p-3 border-2 border-[#f3e8ff] rounded-2xl cursor-pointer bg-white has-[:checked]:border-green-400 has-[:checked]:bg-green-50 transition-all shadow-sm group">
+                            <input type="radio" name="source" value="line" class="hidden">
+                            <i class="fa-brands fa-line text-green-500 text-[24px] group-hover:scale-110 transition-transform"></i>
+                            <span class="text-[11px] font-bold text-gray-500 group-has-[:checked]:text-green-600">Line</span>
+                        </label>
+                        <label class="flex flex-col items-center justify-center gap-1.5 p-3 border-2 border-[#f3e8ff] rounded-2xl cursor-pointer bg-white has-[:checked]:border-pink-400 has-[:checked]:bg-pink-50 transition-all shadow-sm group">
+                            <input type="radio" name="source" value="instagram" class="hidden">
+                            <i class="fa-brands fa-instagram text-pink-500 text-[24px] group-hover:scale-110 transition-transform"></i>
+                            <span class="text-[11px] font-bold text-gray-500 group-has-[:checked]:text-pink-600">Instagram</span>
+                        </label>
                     </div>
                 </div>
+
+                <div class="form-group">
+                    <label>ข้อความรีวิวสั้นๆ ✍️ *</label>
+                    <textarea id="public-message" rows="3" placeholder="พิมพ์ความรู้สึกหรือผลลัพธ์หลังใช้บริการ..." class="form-control custom-scrollbar"></textarea>
+                </div>
+                
+                <div class="form-group mb-2">
+                    <label>แนบรูปภาพรีวิว (ถ้ามี) 🖼️</label>
+                    <label class="border-2 border-dashed border-[#d946ef] rounded-2xl p-6 text-center bg-[#fdf4ff] cursor-pointer hover:bg-[#fae8ff] transition-colors block group">
+                        <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center mx-auto mb-2 shadow-md group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-image text-[#d946ef] text-[20px]"></i>
+                        </div>
+                        <p id="file-name-display" class="text-[14px] font-bold text-brand-text">คลิกเพื่อเลือกรูปภาพ</p>
+                        <p class="text-[11px] text-[#c026d3] mt-1">รองรับไฟล์ JPG, PNG</p>
+                        <input type="file" id="public-image-file" accept="image/*" class="hidden" onchange="previewSelectedImage(this)">
+                    </label>
+                </div>
+                
+                <button id="submit-btn" onclick="submitReviewToSheet()" class="btn-action w-full py-4 text-[18px] glow-effect mt-5">
+                    ส่งรีวิวให้เลยยย! <i class="fa-solid fa-paper-plane"></i>
+                </button>
             </div>
         </div>
 
         <!-- ==================== PAGE 3: CONTACT ==================== -->
         <div id="page-contact" class="page">
-            <div class="banner-bg pt-8 px-6 pb-20 relative rounded-b-[40px]">
-                <div class="flex justify-between items-center mb-6">
-                    <div class="w-8 h-8 bg-white/80 rounded-full flex items-center justify-center text-brand-accent backdrop-blur-md shadow-sm cursor-pointer hover:bg-white transition-colors" onclick="switchTab('page-home', 0)">
-                        <i class="fa-solid fa-chevron-left text-sm"></i>
-                    </div>
-                    <div class="text-white font-outfit text-xl font-bold tracking-wide drop-shadow">AHTAO MU-SPACE</div>
-                    <div class="w-8"></div>
+            <div class="card-main mb-6 relative p-0 overflow-hidden" style="border:none;">
+                <div class="w-full h-[100px] relative">
+                    <div class="absolute inset-0" style="background-image: url('แบนเนอร์.PNG'); background-size: cover; background-position: center; filter: blur(1px) opacity(0.95);"></div>
+                    <div class="absolute inset-0" style="background: linear-gradient(to bottom, rgba(250,245,255,0) 0%, rgba(250,245,255,0) 50%, #faf5ff 100%);"></div>
                 </div>
-                <div class="text-center mb-2 z-10 relative">
-                    <h1 class="font-outfit text-xs font-medium text-purple-100">Contact Channels</h1>
-                    <div class="text-xl font-bold mt-1 text-white flex justify-center items-center drop-shadow">
-                        ช่องทางติดต่อหลัก & สำรอง 📞
+                <div class="px-5 pb-5 flex flex-col items-center relative -mt-10 text-center z-10">
+                    <div class="w-[70px] h-[70px] shrink-0 bg-white rounded-full flex items-center justify-center relative overflow-hidden glow-effect mb-2">
+                        <img src="Ahtao Mu-space พื้นขาว.png" alt="Logo" class="w-full h-full object-cover" onerror="this.src='โลโก้.png'">
                     </div>
+                    <h1 class="text-[20px] animated-gradient-text font-seasons font-bold glow-text m-0">Contact Channels</h1>
+                    <div class="text-[16px] font-bold mt-1 text-[#c026d3]">ช่องทางติดต่อหลัก & สำรอง 📞</div>
                 </div>
             </div>
 
-            <div class="px-5 -mt-10 relative z-10 pb-8">
-                <div class="bg-white rounded-[32px] shadow-app border border-purple-50 p-8 flex justify-center gap-6">
-                    <a href="https://www.facebook.com/share/1brtHZ4VHz/?mibextid=wwXIfr" target="_blank" class="flex flex-col items-center gap-2 group">
-                        <div class="w-14 h-14 rounded-[20px] border-2 border-blue-50 bg-blue-50/50 text-blue-500 flex items-center justify-center text-2xl group-hover:bg-blue-500 group-hover:text-white transition-all shadow-sm group-hover:-translate-y-1">
-                            <i class="fa-brands fa-facebook-f"></i>
-                        </div>
-                        <span class="text-[11px] font-bold text-brand-text">Facebook</span>
-                    </a>
-                    <a href="https://lin.ee/rg2uV5p4" target="_blank" class="flex flex-col items-center gap-2 group">
-                        <div class="w-14 h-14 rounded-[20px] border-2 border-green-50 bg-green-50/50 text-green-500 flex items-center justify-center text-2xl group-hover:bg-green-500 group-hover:text-white transition-all shadow-sm group-hover:-translate-y-1">
-                            <i class="fa-brands fa-line"></i>
-                        </div>
-                        <span class="text-[11px] font-bold text-brand-text">Line OA</span>
-                    </a>
-                    <a href="https://www.instagram.com/artaoty2?igsi=d3g4Nm1hNGR0Zmh5&utm_source=qr" target="_blank" class="flex flex-col items-center gap-2 group">
-                        <div class="w-14 h-14 rounded-[20px] border-2 border-pink-50 bg-pink-50/50 text-pink-500 flex items-center justify-center text-2xl group-hover:bg-pink-500 group-hover:text-white transition-all shadow-sm group-hover:-translate-y-1">
-                            <i class="fa-brands fa-instagram"></i>
-                        </div>
-                        <span class="text-[11px] font-bold text-brand-text">Instagram</span>
-                    </a>
-                </div>
+            <div class="card-main p-6 flex flex-col gap-4">
+                <a href="https://www.facebook.com/share/1brtHZ4VHz/?mibextid=wwXIfr" target="_blank" class="flex items-center gap-4 bg-white border-2 border-[#e9d5ff] p-4 rounded-2xl hover:border-blue-400 hover:shadow-lg transition-all group decoration-none">
+                    <div class="w-[50px] h-[50px] shrink-0 rounded-xl bg-gradient-to-b from-[#1e40af] to-[#2563eb] text-white flex items-center justify-center text-[24px] shadow-md group-hover:scale-110 transition-transform">
+                        <i class="fa-brands fa-facebook-f"></i>
+                    </div>
+                    <div class="text-left flex-1">
+                        <div class="font-bold text-[16px] text-blue-700">Facebook Page</div>
+                        <div class="text-[12px] text-gray-500 font-medium">AhTao Mu-Space</div>
+                    </div>
+                    <i class="fa-solid fa-chevron-right text-gray-300 group-hover:text-blue-500"></i>
+                </a>
+
+                <a href="https://lin.ee/rg2uV5p4" target="_blank" class="flex items-center gap-4 bg-white border-2 border-[#e9d5ff] p-4 rounded-2xl hover:border-green-400 hover:shadow-lg transition-all group decoration-none">
+                    <div class="w-[50px] h-[50px] shrink-0 rounded-xl bg-gradient-to-b from-[#059669] to-[#10b981] text-white flex items-center justify-center text-[24px] shadow-md group-hover:scale-110 transition-transform">
+                        <i class="fa-brands fa-line"></i>
+                    </div>
+                    <div class="text-left flex-1">
+                        <div class="font-bold text-[16px] text-green-700">Line Official</div>
+                        <div class="text-[12px] text-gray-500 font-medium">ติดต่องาน / สอบถาม / ส่งสลิป</div>
+                    </div>
+                    <i class="fa-solid fa-chevron-right text-gray-300 group-hover:text-green-500"></i>
+                </a>
+
+                <a href="https://www.instagram.com/artaoty2?igsi=d3g4Nm1hNGR0Zmh5&utm_source=qr" target="_blank" class="flex items-center gap-4 bg-white border-2 border-[#e9d5ff] p-4 rounded-2xl hover:border-pink-400 hover:shadow-lg transition-all group decoration-none">
+                    <div class="w-[50px] h-[50px] shrink-0 rounded-xl bg-gradient-to-tr from-[#d946ef] to-[#9333ea] text-white flex items-center justify-center text-[24px] shadow-md group-hover:scale-110 transition-transform">
+                        <i class="fa-brands fa-instagram"></i>
+                    </div>
+                    <div class="text-left flex-1">
+                        <div class="font-bold text-[16px] text-pink-700">Instagram</div>
+                        <div class="text-[12px] text-gray-500 font-medium">@artaoty2</div>
+                    </div>
+                    <i class="fa-solid fa-chevron-right text-gray-300 group-hover:text-pink-500"></i>
+                </a>
             </div>
         </div>
 
         <!-- ==================== BOTTOM NAVIGATION ==================== -->
-        <div class="fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-md border-t border-purple-50 px-6 py-3 z-50 shadow-nav max-w-[430px] mx-auto rounded-t-[32px]">
-            <div class="flex justify-between items-end pb-2">
+        <div class="fixed bottom-0 left-0 right-0 bg-[#faf5ff]/95 backdrop-blur-md border-t-2 border-[#e9d5ff] px-6 py-2 pb-4 z-50 shadow-[0_-10px_30px_rgba(139,92,246,0.15)] max-w-[480px] mx-auto rounded-t-[1.5rem]">
+            <div class="flex justify-between items-end mt-1">
                 <div class="flex flex-col items-center gap-1 cursor-pointer w-1/3 text-brand-accent transition-transform hover:scale-105" onclick="switchTab('page-home', 0)" id="nav-item-0">
-                    <div class="w-8 h-8 rounded-full bg-purple-50 flex items-center justify-center mb-0.5">
-                        <i class="fa-solid fa-star text-sm"></i>
+                    <div class="w-10 h-10 rounded-full bg-[#fdf4ff] flex items-center justify-center mb-0.5 border border-[#fae8ff] shadow-sm">
+                        <i class="fa-solid fa-star text-[18px]"></i>
                     </div>
-                    <span class="text-[10px] font-bold">รีวิวทั้งหมด</span>
+                    <span class="text-[11px] font-bold">รีวิวทั้งหมด</span>
                 </div>
-                <div class="flex flex-col items-center gap-1 cursor-pointer w-1/3 text-brand-subtext hover:text-brand-accent transition-all hover:scale-105" onclick="switchTab('page-submit', 1)" id="nav-item-1">
-                    <div class="w-8 h-8 rounded-full flex items-center justify-center mb-0.5">
-                        <i class="fa-solid fa-cloud-arrow-up text-sm"></i>
+                <div class="flex flex-col items-center gap-1 cursor-pointer w-1/3 text-[#9ca3af] hover:text-[#d946ef] transition-all hover:scale-105" onclick="switchTab('page-submit', 1)" id="nav-item-1">
+                    <div class="w-10 h-10 rounded-full flex items-center justify-center mb-0.5 border border-transparent">
+                        <i class="fa-solid fa-cloud-arrow-up text-[18px]"></i>
                     </div>
-                    <span class="text-[10px] font-medium">เพิ่มรีวิว</span>
+                    <span class="text-[11px] font-bold">เพิ่มรีวิว</span>
                 </div>
-                <div class="flex flex-col items-center gap-1 cursor-pointer w-1/3 text-brand-subtext hover:text-brand-accent transition-all hover:scale-105" onclick="switchTab('page-contact', 2)" id="nav-item-2">
-                    <div class="w-8 h-8 rounded-full flex items-center justify-center mb-0.5">
-                        <i class="fa-solid fa-address-book text-sm"></i>
+                <div class="flex flex-col items-center gap-1 cursor-pointer w-1/3 text-[#9ca3af] hover:text-[#d946ef] transition-all hover:scale-105" onclick="switchTab('page-contact', 2)" id="nav-item-2">
+                    <div class="w-10 h-10 rounded-full flex items-center justify-center mb-0.5 border border-transparent">
+                        <i class="fa-solid fa-address-book text-[18px]"></i>
                     </div>
-                    <span class="text-[10px] font-medium">ติดต่อ</span>
+                    <span class="text-[11px] font-bold">ติดต่อ</span>
                 </div>
             </div>
         </div>
-    </div>
+    </main>
 
     <!-- LIGHTBOX MODAL -->
-    <div id="lightbox-modal" class="fixed inset-0 bg-black/80 z-[100] hidden flex items-center justify-center p-4 transition-opacity backdrop-blur-sm" onclick="closeLightbox()">
+    <div id="lightbox-modal" class="fixed inset-0 bg-[#1e0b3b]/90 z-[100000] hidden flex items-center justify-center p-4 transition-opacity backdrop-blur-sm" onclick="closeLightbox()">
         <div class="relative max-w-full max-h-full" onclick="event.stopPropagation()">
-            <button class="absolute -top-12 right-0 w-10 h-10 bg-white/20 rounded-full flex items-center justify-center text-white text-xl hover:bg-white/40 transition-colors" onclick="closeLightbox()"><i class="fa-solid fa-xmark"></i></button>
-            <img id="lightbox-img" src="" alt="Zoomed Review" class="max-w-full max-h-[80vh] rounded-3xl object-contain border-4 border-white/20 shadow-2xl">
+            <button class="absolute -top-12 right-0 w-10 h-10 bg-white/20 rounded-full flex items-center justify-center text-white text-xl hover:bg-[#d946ef] transition-colors border-2 border-white/30" onclick="closeLightbox()"><i class="fa-solid fa-xmark"></i></button>
+            <img id="lightbox-img" src="" alt="Zoomed Review" class="max-w-full max-h-[80vh] rounded-2xl object-contain border-4 border-white/20 shadow-[0_0_40px_rgba(217,70,239,0.4)]">
         </div>
     </div>
 
-    <!-- SCRIPTING -->
+    <!-- SCRIPTING (คงตรรกะเดิมไว้ครบ 100% ห้ามย่อ) -->
     <script>
         const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxwHh6pIodH8FpFFlnkWvVu6LMJ_e93iA4-ypmj9D1PfiCqZxADAoBcn7DFzBLkv_B8/exec';
 
@@ -391,35 +425,81 @@
         let tempBase64Image = '';
         let scrollInterval;
 
+        function showToast(msg) { 
+            const t = document.getElementById('toast'); 
+            t.textContent = msg; 
+            t.classList.add('on'); 
+            setTimeout(() => t.classList.remove('on'), 3000); 
+        }
+
+        function showLoader(text) {
+            document.getElementById('loading-text').innerText = text;
+            document.getElementById('loading-overlay').style.display = 'flex';
+        }
+        function hideLoader() {
+            document.getElementById('loading-overlay').style.display = 'none';
+        }
+
         async function fetchReviews() {
             const feedContainer = document.getElementById('reviews-feed-container');
             try {
                 const response = await fetch(SCRIPT_URL + '?t=' + new Date().getTime());
                 if (!response.ok) throw new Error('Network response was not ok');
                 
-                const data = await response.json();
+                let data = await response.json();
+                
+                // ป้องกันกรณี Google Apps Script ส่งข้อมูลมาผิดรูปแบบ
+                if (data && !Array.isArray(data) && Array.isArray(data.data)) {
+                    data = data.data;
+                } else if (!Array.isArray(data)) {
+                    data = [];
+                }
+                
                 allReviewsData = data;
                 renderReviews(allReviewsData);
             } catch (error) {
                 console.error('Error fetching reviews:', error);
                 feedContainer.innerHTML = `
-                    <div class="border border-purple-50 rounded-[24px] bg-white shadow-sm p-6 text-center space-y-2">
-                        <p class="text-xs font-bold text-brand-text">กำลังโหลดข้อมูลรีวิว... 🥺</p>
-                        <p class="text-[10px] text-brand-subtext">โปรดตรวจสอบการเชื่อมต่ออินเทอร์เน็ตหรือรีเฟรชหน้าเว็บน้า</p>
+                    <div class="border-2 border-[#f3e8ff] rounded-[20px] bg-white shadow-sm p-6 text-center space-y-2">
+                        <p class="text-[14px] font-bold text-[#d946ef]">กำลังโหลดข้อมูลรีวิว... 🥺</p>
+                        <p class="text-[12px] text-[#7e22ce]">โปรดตรวจสอบการเชื่อมต่ออินเทอร์เน็ตหรือรีเฟรชหน้าเว็บน้า</p>
                     </div>
                 `;
             }
         }
 
+        // ย่อรูปลดขนาดก่อนอัปโหลดแบบฉลาดสุดๆ
         function previewSelectedImage(input) {
             if (input.files && input.files[0]) {
                 const file = input.files[0];
                 document.getElementById('file-name-display').innerText = "เลือกรูปภาพแล้ว: " + file.name;
-                document.getElementById('file-name-display').classList.add('text-brand-accent');
+                document.getElementById('file-name-display').classList.add('text-[#d946ef]');
                 
                 const reader = new FileReader();
                 reader.onload = function(e) {
-                    tempBase64Image = e.target.result;
+                    const img = new Image();
+                    img.onload = function() {
+                        const canvas = document.createElement('canvas');
+                        const MAX_WIDTH = 800; // ปรับขนาดความกว้างสูงสุด
+                        const MAX_HEIGHT = 1000; // ปรับขนาดความสูงสูงสุด
+                        let width = img.width;
+                        let height = img.height;
+
+                        if (width > height) {
+                            if (width > MAX_WIDTH) { height *= MAX_WIDTH / width; width = MAX_WIDTH; }
+                        } else {
+                            if (height > MAX_HEIGHT) { width *= MAX_HEIGHT / height; height = MAX_HEIGHT; }
+                        }
+                        
+                        canvas.width = width;
+                        canvas.height = height;
+                        const ctx = canvas.getContext('2d');
+                        ctx.drawImage(img, 0, 0, width, height);
+                        
+                        // บีบอัดเป็น JPEG คุณภาพ 60% ทำให้เบาลงมาก
+                        tempBase64Image = canvas.toDataURL('image/jpeg', 0.6); 
+                    };
+                    img.src = e.target.result;
                 }
                 reader.readAsDataURL(file);
             }
@@ -429,9 +509,9 @@
             const feedContainer = document.getElementById('reviews-feed-container');
             if (!reviews || reviews.length === 0) {
                 feedContainer.innerHTML = `
-                <div class="text-center py-10 bg-purple-50/30 rounded-[24px] border border-purple-100 border-dashed mt-2">
-                    <i class="fa-solid fa-ghost text-purple-200 text-4xl mb-2"></i>
-                    <p class="text-xs font-bold text-brand-subtext">ยังไม่มีรีวิวเลย แวะมารีวิวคนแรกกันเถอะ! ✨</p>
+                <div class="text-center py-10 bg-[#fdf4ff] rounded-[20px] border-2 border-[#f3e8ff] border-dashed mt-2">
+                    <i class="fa-solid fa-ghost text-[#e9d5ff] text-[40px] mb-2"></i>
+                    <p class="text-[14px] font-bold text-[#c026d3]">ยังไม่มีรีวิวเลย แวะมารีวิวคนแรกกันเถอะ! ✨</p>
                 </div>`;
                 return;
             }
@@ -442,39 +522,40 @@
             reversedReviews.forEach((item, index) => {
                 const categoryClass = item.category || 'horo';
                 const catLabel = categoryClass === 'web' ? 'รับทำเว็บ' : 'ดูดวง';
-                const catColor = categoryClass === 'web' ? 'text-fuchsia-500' : 'text-brand-accent';
+                const catColor = categoryClass === 'web' ? 'text-blue-500' : 'text-amber-500';
                 
                 let sourceBadge = '';
                 if(item.source === 'facebook') {
-                    sourceBadge = `<span class="inline-flex items-center gap-1 bg-blue-50 text-blue-600 text-[9px] px-1.5 py-0.5 rounded-md font-medium"><i class="fa-brands fa-facebook"></i> FB</span>`;
+                    sourceBadge = `<span class="inline-flex items-center gap-1 bg-blue-50 text-blue-600 border border-blue-100 text-[10px] px-2 py-0.5 rounded-md font-bold"><i class="fa-brands fa-facebook"></i> FB</span>`;
                 } else if (item.source === 'line') {
-                    sourceBadge = `<span class="inline-flex items-center gap-1 bg-green-50 text-green-600 text-[9px] px-1.5 py-0.5 rounded-md font-medium"><i class="fa-brands fa-line"></i> Line</span>`;
+                    sourceBadge = `<span class="inline-flex items-center gap-1 bg-green-50 text-green-600 border border-green-100 text-[10px] px-2 py-0.5 rounded-md font-bold"><i class="fa-brands fa-line"></i> Line</span>`;
                 } else if (item.source === 'instagram') {
-                    sourceBadge = `<span class="inline-flex items-center gap-1 bg-pink-50 text-pink-600 text-[9px] px-1.5 py-0.5 rounded-md font-medium"><i class="fa-brands fa-instagram"></i> IG</span>`;
+                    sourceBadge = `<span class="inline-flex items-center gap-1 bg-pink-50 text-pink-600 border border-pink-100 text-[10px] px-2 py-0.5 rounded-md font-bold"><i class="fa-brands fa-instagram"></i> IG</span>`;
                 }
                 
                 html += `
-                    <div class="review-item ${categoryClass} border border-purple-50 rounded-[24px] bg-white shadow-sm p-5 space-y-3 transition-transform hover:-translate-y-1 hover:shadow-md">
+                    <div class="review-item ${categoryClass} border-2 border-[#f3e8ff] rounded-[24px] bg-white shadow-sm p-5 space-y-3 transition-transform hover:-translate-y-1 hover:border-[#e9d5ff] hover:shadow-md">
                         <div class="flex justify-between items-start text-xs text-brand-subtext">
                             <div class="flex flex-col">
-                                <span class="font-bold text-brand-text flex items-center gap-1.5 text-sm">
+                                <span class="font-bold text-brand-text flex items-center gap-1.5 text-[15px]">
                                     <i class="fa-solid fa-circle-user ${catColor}"></i> ${item.name || 'คุณลูกค้า'}
                                 </span>
-                                <div class="flex items-center gap-1.5 mt-1">
-                                    <span class="text-[9px] bg-gray-50 border border-gray-100 px-2 py-0.5 rounded-md font-medium">${catLabel}</span>
+                                <div class="flex items-center gap-1.5 mt-1.5">
+                                    <span class="text-[10px] bg-gray-50 border border-gray-200 px-2 py-0.5 rounded-md font-bold">${catLabel}</span>
                                     ${sourceBadge}
                                 </div>
                             </div>
-                            <span class="text-[9px] font-medium bg-purple-50 px-2 py-1 rounded-lg text-brand-accent">${item.date || 'เร็วๆ นี้'}</span>
+                            <span class="text-[10px] font-bold bg-[#fdf4ff] border border-[#f3e8ff] px-2 py-1 rounded-lg text-[#d946ef] shadow-sm">${item.date || 'เร็วๆ นี้'}</span>
                         </div>
-                        <p class="text-xs text-gray-700 leading-relaxed bg-gray-50/50 p-3 rounded-xl border border-gray-100/50">"${item.message || '-'}"</p>
+                        <p class="text-[14px] text-gray-700 leading-relaxed bg-[#fffcfd] p-3 rounded-xl border border-[#f3e8ff]">"${item.message || '-'}"</p>
                         ${item.image ? `
-                            <div onclick="openLightbox('${item.image}')" class="rounded-[16px] overflow-hidden bg-purple-50 h-40 flex items-center justify-center border border-purple-100 cursor-pointer hover:opacity-90 transition-all group">
-                                <img src="${item.image}" alt="Review Image" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" onerror="this.parentElement.innerHTML='<i class=\'fa-solid fa-image text-purple-200 text-3xl\'></i>'">
+                            <div onclick="openLightbox('${item.image}')" class="rounded-[16px] overflow-hidden bg-[#faf5ff] h-[180px] flex items-center justify-center border-2 border-[#f3e8ff] cursor-pointer hover:opacity-90 transition-all group relative">
+                                <img src="${item.image}" alt="Review Image" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" onerror="this.parentElement.innerHTML='<i class=\'fa-solid fa-image text-[#e9d5ff] text-4xl\'></i>'">
+                                <div class="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors"></div>
                             </div>
                         ` : ''}
-                        <div class="admin-controls ${isAdminLoggedIn ? '' : 'hidden'} pt-3 border-t border-purple-50 flex justify-end gap-2">
-                            <span class="text-[10px] font-bold text-brand-subtext bg-purple-50 px-3 py-1 rounded-full"><i class="fa-solid fa-database"></i> แอดมิน: จัดการแถวนี้ใน Sheet</span>
+                        <div class="admin-controls ${isAdminLoggedIn ? '' : 'hidden'} pt-3 border-t-2 border-dashed border-[#e9d5ff] flex justify-end gap-2">
+                            <span class="text-[11px] font-bold text-brand-text bg-yellow-100 border border-yellow-300 px-3 py-1 rounded-full"><i class="fa-solid fa-database text-yellow-600"></i> แอดมิน: จัดการแถวนี้ใน Sheet นะคะ</span>
                         </div>
                     </div>
                 `;
@@ -517,7 +598,7 @@
                     item.style.display = 'block';
                     item.style.animation = 'none';
                     item.offsetHeight; 
-                    item.style.animation = 'fadeIn 0.4s ease-out forwards';
+                    item.style.animation = 'fadeIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards';
                 } else {
                     item.style.display = 'none';
                 }
@@ -541,20 +622,20 @@
                     document.getElementById('admin-badge').classList.add('hidden');
                     document.getElementById('admin-action-bar').classList.add('hidden');
                     document.querySelectorAll('.admin-controls').forEach(el => el.classList.add('hidden'));
-                    alert('ออกจากโหมดแอดมินเรียบร้อย');
+                    showToast('👋 ออกจากโหมดแอดมินเรียบร้อย');
                 }
                 return;
             }
 
-            let pwd = prompt('กรุณากรอกรหัสผ่านแอดมินเพื่อจัดการรีวิว:');
+            let pwd = prompt('🔒 กรุณากรอกรหัสผ่านแอดมินเพื่อจัดการรีวิว:');
             if (pwd === '1234') { 
                 isAdminLoggedIn = true;
                 document.getElementById('admin-badge').classList.remove('hidden');
                 document.getElementById('admin-action-bar').classList.remove('hidden');
                 document.querySelectorAll('.admin-controls').forEach(el => el.classList.remove('hidden'));
-                alert('ยินดีต้อนรับอาเต๋า! เปิดโหมดจัดการรีวิวสำเร็จ');
+                showToast('✨ ยินดีต้อนรับอาเต๋า! เข้าสู่โหมดจัดการรีวิวแล้ว');
             } else if (pwd !== null) {
-                alert('รหัสผ่านไม่ถูกต้อง!');
+                alert('❌ รหัสผ่านไม่ถูกต้อง!');
             }
         }
 
@@ -571,10 +652,8 @@
                 return;
             }
 
-            submitBtn.disabled = true;
-            submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> กำลังส่งความรัก...';
-            submitBtn.classList.remove('hover:-translate-y-1');
-            submitBtn.classList.add('opacity-70');
+            // แสดงโหมดเวทมนตร์ Loading
+            showLoader("กำลังร่ายเวทมนตร์ส่งรีวิว...");
 
             const now = new Date();
             const formattedDate = now.toLocaleDateString('th-TH', { 
@@ -595,36 +674,39 @@
             };
 
             try {
+                // อัปเดต Header เป็น text/plain ป้องกันปัญหากับ Google Apps Script CORS
                 await fetch(SCRIPT_URL, {
                     method: 'POST',
-                    mode: 'no-cors',
                     headers: {
-                        'Content-Type': 'application/json'
+                        'Content-Type': 'text/plain;charset=utf-8'
                     },
                     body: JSON.stringify(payload)
                 });
                 
-                alert('ส่งรีวิวสำเร็จ! ขอบคุณมากๆ สำหรับกำลังใจครับ 💖✨');
+                hideLoader();
+                showToast('✨ ส่งรีวิวสำเร็จ! ขอบคุณมากๆ สำหรับกำลังใจครับ 💖✨');
                 
+                // ล้างฟอร์ม
                 document.getElementById('public-name').value = '';
                 document.getElementById('public-message').value = '';
                 document.getElementById('public-image-file').value = '';
                 document.getElementById('file-name-display').innerText = "คลิกเพื่อเลือกรูปภาพ";
-                document.getElementById('file-name-display').classList.remove('text-brand-accent');
+                document.getElementById('file-name-display').classList.remove('text-[#d946ef]');
                 tempBase64Image = '';
 
                 switchTab('page-home', 0);
                 
+                // เอฟเฟกต์ Shimmer หลอกระหว่างรอโหลดใหม่
                 document.getElementById('reviews-feed-container').innerHTML = `
                     <div class="animate-pulse space-y-4 pt-2">
-                        <div class="border border-purple-50 rounded-[24px] bg-white p-5 space-y-4 shadow-sm">
+                        <div class="border-2 border-[#f3e8ff] rounded-[20px] bg-white p-5 space-y-4 shadow-sm">
                             <div class="flex justify-between items-center">
-                                <div class="h-4 bg-purple-100/70 rounded-full w-1/3"></div>
+                                <div class="h-4 bg-purple-100 rounded-full w-1/3"></div>
                                 <div class="h-3 bg-purple-50 rounded-full w-1/5"></div>
                             </div>
                             <div class="space-y-2">
-                                <div class="h-3 bg-purple-50/80 rounded-full w-full"></div>
-                                <div class="h-3 bg-purple-50/80 rounded-full w-5/6"></div>
+                                <div class="h-3 bg-purple-50 rounded-full w-full"></div>
+                                <div class="h-3 bg-purple-50 rounded-full w-5/6"></div>
                             </div>
                             <div class="h-32 bg-purple-50 rounded-2xl w-full mt-2"></div>
                         </div>
@@ -636,13 +718,9 @@
                 }, 1000);
 
             } catch (error) {
+                hideLoader();
                 console.error('Error submitting:', error);
                 alert('อุ๊ย! ไม่สามารถส่งข้อมูลได้ กรุณาตรวจสอบอินเทอร์เน็ตแล้วลองใหม่อีกครั้งนะครับ');
-            } finally {
-                submitBtn.disabled = false;
-                submitBtn.innerHTML = 'ส่งรีวิวให้เลยยย! <i class="fa-solid fa-paper-plane"></i>';
-                submitBtn.classList.add('hover:-translate-y-1');
-                submitBtn.classList.remove('opacity-70');
             }
         }
 
@@ -661,15 +739,15 @@
                         const textSpan = item.querySelector('span');
                         
                         if (i === navIndex) {
-                            item.classList.remove('text-brand-subtext');
-                            item.classList.add('text-brand-accent');
-                            textSpan.classList.replace('font-medium', 'font-bold');
-                            iconContainer.classList.add('bg-purple-50');
+                            item.classList.remove('text-[#9ca3af]');
+                            item.classList.add('text-[#d946ef]');
+                            iconContainer.classList.replace('border-transparent', 'border-[#fae8ff]');
+                            iconContainer.classList.add('bg-[#fdf4ff]', 'shadow-sm');
                         } else {
-                            item.classList.remove('text-brand-accent');
-                            item.classList.add('text-brand-subtext');
-                            textSpan.classList.replace('font-bold', 'font-medium');
-                            iconContainer.classList.remove('bg-purple-50');
+                            item.classList.remove('text-[#d946ef]');
+                            item.classList.add('text-[#9ca3af]');
+                            iconContainer.classList.replace('border-[#fae8ff]', 'border-transparent');
+                            iconContainer.classList.remove('bg-[#fdf4ff]', 'shadow-sm');
                         }
                     }
                 }
