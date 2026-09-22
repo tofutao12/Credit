@@ -120,7 +120,7 @@
                     <h1 class="text-base font-semibold text-white drop-shadow-md flex justify-center items-center">
                         ศูนย์รวมรีวิวและความน่าเชื่อถือ 🌸
                     </h1>
-                    <p class="text-[11px] font-medium text-purple-100 mt-1 drop-shadow">รีวิวจากผู้ใช้บริการจริง ทั้งดูดวง, วอลเปเปอร์ และงานเว็บ</p>
+                    <p class="text-[11px] font-medium text-purple-100 mt-1 drop-shadow">รีวิวจากผู้ใช้บริการจริง ทั้งดูดวง, วอลเปเปอร์ และทำเว็บ</p>
                 </div>
                 
                 <div class="hero-image-placeholder mt-4 mb-[-70px]">
@@ -145,9 +145,12 @@
                 </div>
 
                 <!-- ปุ่มเพิ่มรีวิวพิเศษเฉพาะแอดมิน -->
-                <div id="admin-action-bar" class="mb-5 hidden">
+                <div id="admin-action-bar" class="mb-5 hidden space-y-2">
                     <button onclick="openAdminUploadModal()" class="w-full bg-gradient-to-r from-emerald-500 to-teal-600 text-white font-semibold py-3 rounded-2xl shadow-md text-xs flex items-center justify-center gap-2">
                         <i class="fa-solid fa-cloud-arrow-up text-sm"></i> อัปโหลดรูปแคปแชทรีวิว (โหมดแอดมิน)
+                    </button>
+                    <button onclick="openAdminSettingsModal()" class="w-full bg-purple-600 hover:bg-purple-700 text-white font-semibold py-2.5 rounded-2xl shadow-md text-xs flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-gear text-sm"></i> ตั้งค่าหน้าเว็บ & ลิงก์โซเชียล (แอดมิน)
                     </button>
                 </div>
 
@@ -157,7 +160,7 @@
                     </span>
                 </div>
                 
-                <!-- หมวดหมู่รีวิว -->
+                <!-- หมวดหมู่รีวิว (3 ประเภท: ดูดวง / วอลเปเปอร์ / เว็บไซต์ ตามเรฟ) -->
                 <div class="grid grid-cols-4 gap-2 mb-6">
                     <div class="flex flex-col items-center gap-1.5 cursor-pointer group" onclick="filterReviews('all')">
                         <div class="w-12 h-12 rounded-[18px] bg-purple-50 group-hover:bg-purple-100 flex items-center justify-center text-brand-accent text-lg shadow-sm border border-purple-100 transition-all">
@@ -177,11 +180,11 @@
                         </div>
                         <span class="text-[10px] text-brand-text font-medium">วอลเปเปอร์</span>
                     </div>
-                    <div class="flex flex-col items-center gap-1.5 cursor-pointer group" onclick="filterReviews('ทำเว็บ')">
+                    <div class="flex flex-col items-center gap-1.5 cursor-pointer group" onclick="filterReviews('เว็บไซต์')">
                         <div class="w-12 h-12 rounded-[18px] bg-fuchsia-50 group-hover:bg-fuchsia-100 flex items-center justify-center text-fuchsia-500 text-lg shadow-sm border border-fuchsia-100 transition-all">
                             <i class="fa-solid fa-laptop-code"></i>
                         </div>
-                        <span class="text-[10px] text-brand-text font-medium">ทำเว็บ</span>
+                        <span class="text-[10px] text-brand-text font-medium">เว็บไซต์</span>
                     </div>
                 </div>
 
@@ -193,7 +196,7 @@
                     <p class="text-[11px] text-brand-subtext leading-relaxed">หากเฟสหลักมีปัญหา ติดต่ออาเต๋าได้ทาง Line OA หรือ Instagram หลักนี้ได้ตลอดเวลา การันตีตัวจริงไม่มีหาย!</p>
                 </div>
 
-                <!-- ฟีดแสดงรีวิว (ไม่มีเลื่อนเอง) -->
+                <!-- ฟีดแสดงรีวิว -->
                 <div class="mb-6">
                     <div class="flex justify-between items-center mb-3 px-1">
                         <h3 class="font-bold text-brand-text text-sm flex items-center gap-2">
@@ -209,7 +212,7 @@
             </div>
         </div>
 
-        <!-- ==================== PAGE 2: SUBMIT REVIEW FORM (ลูกค้าส่งรีวิวเอง) ==================== -->
+        <!-- ==================== PAGE 2: SUBMIT REVIEW FORM (ลูกค้าส่งรีวิวเอง 1-5 ดาว) ==================== -->
         <div id="page-submit" class="page">
             <div class="banner-bg pt-8 px-6 pb-20 relative rounded-b-[40px]">
                 <div class="flex justify-between items-center mb-6">
@@ -235,17 +238,20 @@
                     <div>
                         <label class="block text-xs font-bold text-brand-text mb-1">หมวดหมู่บริการ 🔮</label>
                         <select id="public-category" class="w-full px-4 py-3 rounded-xl border-2 border-purple-100 text-xs bg-white focus:outline-none focus:border-brand-accent">
-                            <option value="ดูดวง">ดูดวง / ไพ่ยิปซี / วอลเปเปอร์</option>
-                            <option value="ทำเว็บ">รับทำเว็บไซต์ / ระบบหลังบ้าน</option>
+                            <option value="ดูดวง">🔮 ดูดวง & มู</option>
+                            <option value="วอลเปเปอร์">📱 วอลเปเปอร์</option>
+                            <option value="เว็บไซต์">💻 เว็บไซต์</option>
                         </select>
                     </div>
 
                     <div>
-                        <label class="block text-xs font-bold text-brand-text mb-1">ให้คะแนนดาว ⭐</label>
+                        <label class="block text-xs font-bold text-brand-text mb-1">ให้คะแนนดาว (1-5 ดาว) ⭐</label>
                         <select id="public-stars" class="w-full px-4 py-3 rounded-xl border-2 border-purple-100 text-xs bg-white focus:outline-none focus:border-brand-accent">
                             <option value="⭐⭐⭐⭐⭐">⭐⭐⭐⭐⭐ (5 ดาว - ประทับใจมาก)</option>
                             <option value="⭐⭐⭐⭐">⭐⭐⭐⭐ (4 ดาว - ดีมาก)</option>
                             <option value="⭐⭐⭐">⭐⭐⭐ (3 ดาว - ปานกลาง)</option>
+                            <option value="⭐⭐">⭐⭐ (2 ดาว)</option>
+                            <option value="⭐">⭐ (1 ดาว)</option>
                         </select>
                     </div>
 
@@ -269,7 +275,7 @@
             </div>
         </div>
 
-        <!-- ==================== PAGE 3: CONTACT ==================== -->
+        <!-- ==================== PAGE 3: CONTACT (จัดระยะลงมาสวยงาม + ข้อความทักทาย) ==================== -->
         <div id="page-contact" class="page">
             <div class="banner-bg pt-8 px-6 pb-20 relative rounded-b-[40px]">
                 <div class="flex justify-between items-center mb-6">
@@ -283,20 +289,38 @@
                 </div>
             </div>
 
-            <div class="px-5 -mt-10 relative z-10 pb-8">
-                <div class="bg-[#faf5ff] rounded-[32px] shadow-app border border-purple-100 p-8 flex justify-center gap-6">
-                    <a href="https://www.facebook.com/profile.php?id=61594504356531" target="_blank" class="flex flex-col items-center gap-2 group">
-                        <div class="w-14 h-14 rounded-[20px] border-2 border-blue-50 bg-blue-50/50 text-blue-500 flex items-center justify-center text-2xl group-hover:bg-blue-500 group-hover:text-white transition-all shadow-sm"><i class="fa-brands fa-facebook-f"></i></div>
-                        <span class="text-[11px] font-bold text-brand-text">Facebook</span>
-                    </a>
-                    <a href="https://lin.ee/WgEAeFx" target="_blank" class="flex flex-col items-center gap-2 group">
-                        <div class="w-14 h-14 rounded-[20px] border-2 border-green-50 bg-green-50/50 text-green-500 flex items-center justify-center text-2xl group-hover:bg-green-500 group-hover:text-white transition-all shadow-sm"><i class="fa-brands fa-line"></i></div>
-                        <span class="text-[11px] font-bold text-brand-text">Line OA</span>
-                    </a>
-                    <a href="https://www.instagram.com/artaoty2" target="_blank" class="flex flex-col items-center gap-2 group">
-                        <div class="w-14 h-14 rounded-[20px] border-2 border-pink-50 bg-pink-50/50 text-pink-500 flex items-center justify-center text-2xl group-hover:bg-pink-500 group-hover:text-white transition-all shadow-sm"><i class="fa-brands fa-instagram"></i></div>
-                        <span class="text-[11px] font-bold text-brand-text">Instagram</span>
-                    </a>
+            <!-- ขยับกล่องลงมาให้รับกับหน้าจอพอดี ไม่โล่งเกินไป พร้อมข้อความทักทาย -->
+            <div class="px-5 -mt-6 relative z-10 pb-12 flex flex-col items-center justify-center min-h-[50vh]">
+                <div class="bg-white/80 backdrop-blur-md rounded-2xl p-4 mb-4 text-center border border-purple-100 shadow-sm w-full max-w-[340px]">
+                    <p id="contact-greeting-text" class="text-xs font-bold text-brand-subtext leading-relaxed">✨ แม่หมอพร้อมตอบแชทและดูแลคุณลูกค้านะคะ ทักมาสอบถามหรือจองคิวได้เลยค่ะ 💖</p>
+                </div>
+
+                <div class="bg-[#faf5ff] rounded-[32px] shadow-app border border-purple-100 p-7 w-full max-w-[340px] flex flex-col items-center gap-4">
+                    <div class="flex justify-center gap-5 w-full">
+                        <a id="link-fb" href="https://www.facebook.com/profile.php?id=61594504356531" target="_blank" class="flex flex-col items-center gap-1.5 group">
+                            <div class="w-14 h-14 rounded-[20px] border-2 border-blue-50 bg-blue-50/50 text-blue-500 flex items-center justify-center text-2xl group-hover:bg-blue-500 group-hover:text-white transition-all shadow-sm"><i class="fa-brands fa-facebook-f"></i></div>
+                            <span class="text-[11px] font-bold text-brand-text">Facebook</span>
+                        </a>
+                        <a id="link-line" href="https://lin.ee/WgEAeFx" target="_blank" class="flex flex-col items-center gap-1.5 group">
+                            <div class="w-14 h-14 rounded-[20px] border-2 border-green-50 bg-green-50/50 text-green-500 flex items-center justify-center text-2xl group-hover:bg-green-500 group-hover:text-white transition-all shadow-sm"><i class="fa-brands fa-line"></i></div>
+                            <span class="text-[11px] font-bold text-brand-text">Line OA</span>
+                        </a>
+                        <a id="link-ig" href="https://www.instagram.com/artaoty2" target="_blank" class="flex flex-col items-center gap-1.5 group">
+                            <div class="w-14 h-14 rounded-[20px] border-2 border-pink-50 bg-pink-50/50 text-pink-500 flex items-center justify-center text-2xl group-hover:bg-pink-500 group-hover:text-white transition-all shadow-sm"><i class="fa-brands fa-instagram"></i></div>
+                            <span class="text-[11px] font-bold text-brand-text">Instagram</span>
+                        </a>
+                    </div>
+                    <!-- ช่องทางเพิ่มเติม (TikTok / Discord) ที่แอดมินตั้งค่าในระบบหลังบ้านได้ -->
+                    <div id="extra-social-box" class="flex justify-center gap-5 w-full pt-2 border-t border-purple-100 hidden">
+                        <a id="link-tiktok" href="#" target="_blank" class="flex flex-col items-center gap-1.5 group hidden">
+                            <div class="w-12 h-12 rounded-[18px] border-2 border-gray-100 bg-gray-50 text-black flex items-center justify-center text-xl group-hover:bg-black group-hover:text-white transition-all shadow-sm"><i class="fa-brands fa-tiktok"></i></div>
+                            <span class="text-[10px] font-bold text-brand-text">TikTok</span>
+                        </a>
+                        <a id="link-discord" href="#" target="_blank" class="flex flex-col items-center gap-1.5 group hidden">
+                            <div class="w-12 h-12 rounded-[18px] border-2 border-indigo-50 bg-indigo-50 text-indigo-500 flex items-center justify-center text-xl group-hover:bg-indigo-500 group-hover:text-white transition-all shadow-sm"><i class="fa-brands fa-discord"></i></div>
+                            <span class="text-[10px] font-bold text-brand-text">Discord</span>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -320,7 +344,7 @@
         </div>
     </div>
 
-    <!-- ADMIN UPLOAD MODAL (อัปโหลดรูปแคปแชท แอดมิน) -->
+    <!-- ADMIN UPLOAD REVIEW MODAL (อัปโหลดรูปแคปแชท แอดมิน) -->
     <div id="admin-upload-modal" class="fixed inset-0 bg-black/85 z-[100000] hidden flex items-center justify-center p-4 backdrop-blur-sm">
         <div class="bg-white rounded-[1.5rem] p-5 w-full max-w-sm border-4 border-[#d946ef] shadow-2xl relative text-left">
             <div class="flex justify-between items-center border-b-2 dashed border-[#e9d5ff] pb-2 mb-3">
@@ -334,14 +358,17 @@
                     <select id="adm-category" class="w-full p-2 border rounded-lg mt-1">
                         <option value="ดูดวง">🔮 ดูดวง & มู</option>
                         <option value="วอลเปเปอร์">📱 วอลเปเปอร์</option>
-                        <option value="ทำเว็บ">💻 รับทำเว็บไซต์</option>
+                        <option value="เว็บไซต์">💻 เว็บไซต์</option>
                     </select>
                 </div>
                 <div>
-                    <label class="font-bold">ระดับดาว *</label>
+                    <label class="font-bold">ระดับดาว (1-5 ดาว) *</label>
                     <select id="adm-stars" class="w-full p-2 border rounded-lg mt-1">
                         <option value="⭐⭐⭐⭐⭐">⭐⭐⭐⭐⭐ (5 ดาว)</option>
                         <option value="⭐⭐⭐⭐">⭐⭐⭐⭐ (4 ดาว)</option>
+                        <option value="⭐⭐⭐">⭐⭐⭐ (3 ดาว)</option>
+                        <option value="⭐⭐">⭐⭐ (2 ดาว)</option>
+                        <option value="⭐">⭐ (1 ดาว)</option>
                     </select>
                 </div>
                 <div><label class="font-bold">แคปชั่น / ข้อความรีวิว *</label><textarea id="adm-message" rows="2" class="w-full p-2 border rounded-lg mt-1" placeholder="รีวิวจากแชทจริง..."></textarea></div>
@@ -351,19 +378,88 @@
         </div>
     </div>
 
+    <!-- ADMIN SETTINGS MODAL (ตั้งค่าหน้าเว็บ & ลิงก์โซเชียล) -->
+    <div id="admin-settings-modal" class="fixed inset-0 bg-black/85 z-[100000] hidden flex items-center justify-center p-4 backdrop-blur-sm">
+        <div class="bg-white rounded-[1.5rem] p-5 w-full max-w-sm border-4 border-purple-600 shadow-2xl relative text-left max-h-[85vh] overflow-y-auto custom-scrollbar">
+            <div class="flex justify-between items-center border-b-2 dashed border-[#e9d5ff] pb-2 mb-3">
+                <h2 class="text-purple-700 m-0 text-sm font-bold">⚙️ ตั้งค่าหน้าเว็บ & โซเชียล (แอดมิน)</h2>
+                <button onclick="closeAdminSettingsModal()" class="text-gray-400 text-2xl">&times;</button>
+            </div>
+            <div class="space-y-3 text-xs">
+                <div><label class="font-bold">ข้อความทักทายหน้าติดต่อ</label><textarea id="set-greeting" rows="2" class="w-full p-2 border rounded-lg mt-1" placeholder="แม่หมอพร้อมตอบแชท..."></textarea></div>
+                <div><label class="font-bold">ลิงก์ Facebook</label><input type="text" id="set-fb" class="w-full p-2 border rounded-lg mt-1"></div>
+                <div><label class="font-bold">ลิงก์ Line OA</label><input type="text" id="set-line" class="w-full p-2 border rounded-lg mt-1"></div>
+                <div><label class="font-bold">ลิงก์ Instagram</label><input type="text" id="set-ig" class="w-full p-2 border rounded-lg mt-1"></div>
+                <div><label class="font-bold">ลิงก์ TikTok (ถ้ามี)</label><input type="text" id="set-tiktok" class="w-full p-2 border rounded-lg mt-1" placeholder="https://tiktok.com/..."></div>
+                <div><label class="font-bold">ลิงก์ Discord (ถ้ามี)</label><input type="text" id="set-discord" class="w-full p-2 border rounded-lg mt-1" placeholder="https://discord.gg/..."></div>
+                <button onclick="saveAdminSettings()" class="w-full bg-purple-600 text-white font-bold py-3 rounded-xl mt-2">💾 บันทึกการตั้งค่าหน้าเว็บ</button>
+            </div>
+        </div>
+    </div>
+
     <!-- LIGHTBOX MODAL -->
     <div id="lightbox-modal" class="fixed inset-0 bg-black/90 z-[100001] hidden flex items-center justify-center p-4 cursor-pointer" onclick="closeLightbox()">
         <img id="lightbox-img" src="" alt="Zoom" class="max-w-full max-h-[90vh] rounded-2xl object-contain shadow-2xl">
     </div>
 
-    <!-- SCRIPTING (กันพัง รวดเร็ว ปลอดภัย 100%) -->
+    <!-- SCRIPTING -->
     <script>
         const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxwHh6pIodH8FpFFlnkWvVu6LMJ_e93iA4-ypmj9D1PfiCqZxADAoBcn7DFzBLkv_B8/exec';
         let allReviewsData = [];
         let isAdminLoggedIn = false;
         let tempBase64Image = '';
 
-        document.addEventListener('DOMContentLoaded', fetchReviews);
+        // ข้อมูลตั้งค่าหน้าเว็บเริ่มต้น
+        let siteSettings = {
+            greeting: "✨ แม่หมอพร้อมตอบแชทและดูแลคุณลูกค้านะคะ ทักมาสอบถามหรือจองคิวได้เลยค่ะ 💖",
+            fb: "https://www.facebook.com/profile.php?id=61594504356531",
+            line: "https://lin.ee/WgEAeFx",
+            ig: "https://www.instagram.com/artaoty2",
+            tiktok: "",
+            discord: ""
+        };
+
+        document.addEventListener('DOMContentLoaded', () => {
+            loadSavedSettings();
+            fetchReviews();
+        });
+
+        function loadSavedSettings() {
+            try {
+                const saved = localStorage.getItem('muSpaceReviewSettings');
+                if(saved) {
+                    siteSettings = JSON.parse(saved);
+                }
+            } catch(e) {}
+            applySettingsToDOM();
+        }
+
+        function applySettingsToDOM() {
+            document.getElementById('contact-greeting-text').innerText = siteSettings.greeting;
+            document.getElementById('link-fb').href = siteSettings.fb;
+            document.getElementById('link-line').href = siteSettings.line;
+            document.getElementById('link-ig').href = siteSettings.ig;
+
+            const extraBox = document.getElementById('extra-social-box');
+            const tkBtn = document.getElementById('link-tiktok');
+            const dcBtn = document.getElementById('link-discord');
+            
+            let hasExtra = false;
+            if(siteSettings.tiktok && siteSettings.tiktok.trim() !== "") {
+                tkBtn.href = siteSettings.tiktok;
+                tkBtn.classList.remove('hidden');
+                hasExtra = true;
+            } else { tkBtn.classList.add('hidden'); }
+
+            if(siteSettings.discord && siteSettings.discord.trim() !== "") {
+                dcBtn.href = siteSettings.discord;
+                dcBtn.classList.remove('hidden');
+                hasExtra = true;
+            } else { dcBtn.classList.add('hidden'); }
+
+            if(hasExtra) extraBox.classList.remove('hidden');
+            else extraBox.classList.add('hidden');
+        }
 
         async function fetchReviews() {
             const feedContainer = document.getElementById('reviews-feed-container');
@@ -388,7 +484,7 @@
             let count5 = 0, count4 = 0, count3 = 0;
 
             reviews.forEach(r => {
-                let stars = (r.stars || '⭐⭐⭐⭐⭐').length; // นับจำนวนดาว
+                let stars = (r.stars || '⭐⭐⭐⭐⭐').length;
                 if(stars >= 5) count5++;
                 else if(stars === 4) count4++;
                 else count3++;
@@ -399,7 +495,6 @@
             document.getElementById('stat-avg-score').innerText = avg;
             document.getElementById('stat-total-count').innerText = `จาก ${total} รีวิว`;
             
-            // อัปเดตแถบสถิติเปอร์เซ็นต์
             let p5 = Math.round((count5 / total) * 100);
             let p4 = Math.round((count4 / total) * 100);
             let p3 = Math.round((count3 / total) * 100);
@@ -414,23 +509,28 @@
         function renderReviews(reviews) {
             const feedContainer = document.getElementById('reviews-feed-container');
             if (!reviews || reviews.length === 0) {
-                feedContainer.innerHTML = `<div class="text-center py-10 bg-white rounded-2xl border border-purple-100 text-xs text-brand-subtext">ยังไม่มีรีวิวในหมวดนี้จ้า ✨</div>`;
+                feedContainer.innerHTML = `<div class="text-center py-10 bg-white rounded-2xl border border-purple-100 text-xs text-brand-subtext">ยังไม่มีรีวิวในระบบจ้า ✨</div>`;
                 return;
             }
 
             let html = '';
             const reversed = [...reviews].reverse();
             reversed.forEach(item => {
-                let badgeBg = '#fdf4ff'; let badgeCol = '#c026d3';
-                if(item.category === 'วอลเปเปอร์') { badgeBg = '#f0fdf4'; badgeCol = '#10b981'; }
-                else if(item.category === 'ทำเว็บ') { badgeBg = '#eff6ff'; badgeCol = '#3b82f6'; }
+                let cat = item.category || 'ดูดวง';
+                let badgeBg = '#fffbeb'; let badgeCol = '#d97706'; // ดูดวง (เหลือง)
+                if(cat === 'วอลเปเปอร์') { badgeBg = '#f0fdf4'; badgeCol = '#10b981'; } // วอลเปเปอร์ (เขียว)
+                else if(cat === 'เว็บไซต์') { badgeBg = '#faf5ff'; badgeCol = '#c026d3'; } // เว็บไซต์ (ม่วง/ชมพู)
+
+                // แยกแยะรีวิวแอดมิน (แคปแชท) กับลูกค้าทั่วไป
+                let isAdminPost = item.source === 'admin_chat';
+                let badgeExtra = isAdminPost ? `<span class="bg-purple-100 text-purple-700 text-[8px] px-1.5 py-0.5 rounded font-bold ml-1">💬 รีวิวจากแชทสด</span>` : '';
 
                 html += `
-                    <div class="review-card border border-purple-100 rounded-[20px] bg-white shadow-sm p-4 space-y-2.5" data-category="${item.category || 'ดูดวง'}">
+                    <div class="review-card border border-purple-100 rounded-[20px] bg-white shadow-sm p-4 space-y-2.5" data-category="${cat}">
                         <div class="flex justify-between items-start text-xs">
                             <div>
-                                <span class="font-bold text-brand-text text-sm flex items-center gap-1.5"><i class="fa-solid fa-circle-user text-brand-accent"></i> ${item.name || 'คุณลูกค้า'}</span>
-                                <span style="background:${badgeBg}; color:${badgeCol};" class="text-[9px] px-2 py-0.5 rounded-md font-bold inline-block mt-1">${item.category || 'ดูดวง'}</span>
+                                <span class="font-bold text-brand-text text-sm flex items-center gap-1.5"><i class="fa-solid fa-circle-user text-brand-accent"></i> ${item.name || 'คุณลูกค้า'} ${badgeExtra}</span>
+                                <span style="background:${badgeBg}; color:${badgeCol};" class="text-[9px] px-2 py-0.5 rounded-md font-bold inline-block mt-1">${cat}</span>
                             </div>
                             <span class="text-[9px] text-gray-400">${item.date || ''}</span>
                         </div>
@@ -526,7 +626,7 @@
                 isAdminLoggedIn = true;
                 document.getElementById('admin-badge').classList.remove('hidden');
                 document.getElementById('admin-action-bar').classList.remove('hidden');
-                alert('ยินดีต้อนรับอาเต๋า! เปิดโหมดอัปโหลดรูปแคปแชทร้านสำเร็จ');
+                alert('ยินดีต้อนรับอาเต๋า! เปิดโหมดแอดมินสำเร็จ');
             } else if(pwd !== null) {
                 alert('รหัสผ่านไม่ถูกต้อง!');
             }
@@ -534,6 +634,31 @@
 
         function openAdminUploadModal() { document.getElementById('admin-upload-modal').style.display = 'flex'; }
         function closeAdminUploadModal() { document.getElementById('admin-upload-modal').style.display = 'none'; }
+
+        function openAdminSettingsModal() {
+            document.getElementById('set-greeting').value = siteSettings.greeting;
+            document.getElementById('set-fb').value = siteSettings.fb;
+            document.getElementById('set-line').value = siteSettings.line;
+            document.getElementById('set-ig').value = siteSettings.ig;
+            document.getElementById('set-tiktok').value = siteSettings.tiktok || "";
+            document.getElementById('set-discord').value = siteSettings.discord || "";
+            document.getElementById('admin-settings-modal').style.display = 'flex';
+        }
+        function closeAdminSettingsModal() { document.getElementById('admin-settings-modal').style.display = 'none'; }
+
+        function saveAdminSettings() {
+            siteSettings.greeting = document.getElementById('set-greeting').value.trim();
+            siteSettings.fb = document.getElementById('set-fb').value.trim();
+            siteSettings.line = document.getElementById('set-line').value.trim();
+            siteSettings.ig = document.getElementById('set-ig').value.trim();
+            siteSettings.tiktok = document.getElementById('set-tiktok').value.trim();
+            siteSettings.discord = document.getElementById('set-discord').value.trim();
+
+            localStorage.setItem('muSpaceReviewSettings', JSON.stringify(siteSettings));
+            applySettingsToDOM();
+            closeAdminSettingsModal();
+            alert('💾 บันทึกการตั้งค่าหน้าเว็บสำเร็จ!');
+        }
 
         async function uploadAdminReview() {
             const name = document.getElementById('adm-name').value.trim();
