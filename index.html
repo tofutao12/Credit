@@ -105,8 +105,8 @@
 
                 <div class="flex justify-between items-center mb-6 relative z-10">
                     <div class="text-white font-outfit text-xl font-bold tracking-wide flex flex-col drop-shadow-md">
-                        AHTAO MU-SPACE
-                        <span class="text-xs font-medium tracking-widest text-amber-200 mt-0.5">Review & Credit</span>
+                        <span class="dyn-site-title">AHTAO MU-SPACE</span>
+                        <span id="dyn-site-subtitle" class="text-xs font-medium tracking-widest text-amber-200 mt-0.5">Review & Credit</span>
                     </div>
                     <div class="relative cursor-pointer group" onclick="promptAdminPassword()" title="โหมดแอดมิน (1164)">
                         <div class="w-10 h-10 rounded-full border-2 border-amber-300 overflow-hidden shadow-glow-amber bg-white flex items-center justify-center transition-all hover:scale-105">
@@ -117,10 +117,10 @@
                 </div>
                 
                 <div class="text-center mb-2 z-10 relative">
-                    <h1 class="text-base font-semibold text-white drop-shadow-md flex justify-center items-center">
+                    <h1 id="dyn-hero-title" class="text-base font-semibold text-white drop-shadow-md flex justify-center items-center">
                         ศูนย์รวมรีวิวและความน่าเชื่อถือ 🌸
                     </h1>
-                    <p class="text-[11px] font-medium text-purple-100 mt-1 drop-shadow">รีวิวจากผู้ใช้บริการจริง ทั้งดูดวง, วอลเปเปอร์ และทำเว็บ</p>
+                    <p id="dyn-hero-desc" class="text-[11px] font-medium text-purple-100 mt-1 drop-shadow">รีวิวจากผู้ใช้บริการจริง ทั้งดูดวง, วอลเปเปอร์ และทำเว็บ</p>
                 </div>
                 
                 <div class="hero-image-placeholder mt-4 mb-[-70px]">
@@ -148,9 +148,6 @@
                 <div id="admin-action-bar" class="mb-5 hidden space-y-2">
                     <button onclick="openAdminUploadModal()" class="w-full bg-gradient-to-r from-emerald-500 to-teal-600 text-white font-semibold py-3 rounded-2xl shadow-md text-xs flex items-center justify-center gap-2">
                         <i class="fa-solid fa-cloud-arrow-up text-sm"></i> อัปโหลดรูปแคปแชทรีวิว (โหมดแอดมิน)
-                    </button>
-                    <button onclick="openAdminSettingsModal()" class="w-full bg-purple-600 hover:bg-purple-700 text-white font-semibold py-2.5 rounded-2xl shadow-md text-xs flex items-center justify-center gap-2">
-                        <i class="fa-solid fa-gear text-sm"></i> ตั้งค่าหน้าเว็บ & ลิงก์โซเชียล (แอดมิน)
                     </button>
                 </div>
 
@@ -188,14 +185,6 @@
                     </div>
                 </div>
 
-                <!-- แจ้งเตือนสำรอง -->
-                <div class="border border-purple-200 rounded-2xl bg-white p-4 text-center space-y-1.5 shadow-sm mb-6">
-                    <p class="font-bold text-brand-text text-xs flex items-center justify-center gap-1.5">
-                        <i class="fa-solid fa-shield-cat text-brand-accent text-sm"></i> แจ้งเตือนช่องทางสำรอง
-                    </p>
-                    <p class="text-[11px] text-brand-subtext leading-relaxed">หากเฟสหลักมีปัญหา ติดต่ออาเต๋าได้ทาง Line OA หรือ Instagram หลักนี้ได้ตลอดเวลา การันตีตัวจริงไม่มีหาย!</p>
-                </div>
-
                 <!-- ฟีดแสดงรีวิว -->
                 <div class="mb-6">
                     <div class="flex justify-between items-center mb-3 px-1">
@@ -217,7 +206,7 @@
             <div class="banner-bg pt-8 px-6 pb-20 relative rounded-b-[40px]">
                 <div class="flex justify-between items-center mb-6">
                     <div class="w-8 h-8 bg-white/80 rounded-full flex items-center justify-center text-brand-accent cursor-pointer shadow-sm" onclick="switchTab('page-home', 0)"><i class="fa-solid fa-chevron-left text-sm"></i></div>
-                    <div class="text-white font-outfit text-xl font-bold tracking-wide drop-shadow">AHTAO MU-SPACE</div>
+                    <div class="text-white font-outfit text-xl font-bold tracking-wide drop-shadow dyn-site-title">AHTAO MU-SPACE</div>
                     <div class="w-8"></div>
                 </div>
                 <div class="text-center mb-2 z-10 relative">
@@ -244,7 +233,6 @@
                         </select>
                     </div>
 
-                    <!-- เพิ่มช่องทางติดต่อ -->
                     <div>
                         <label class="block text-xs font-bold text-brand-text mb-1">ช่องทางที่ติดต่อแม่หมอ 📱</label>
                         <select id="public-source" class="w-full px-4 py-3 rounded-xl border-2 border-purple-100 text-xs bg-white focus:outline-none focus:border-brand-accent">
@@ -292,7 +280,7 @@
             <div class="banner-bg pt-8 px-6 pb-20 relative rounded-b-[40px]">
                 <div class="flex justify-between items-center mb-6">
                     <div class="w-8 h-8 bg-white/80 rounded-full flex items-center justify-center text-brand-accent cursor-pointer shadow-sm" onclick="switchTab('page-home', 0)"><i class="fa-solid fa-chevron-left text-sm"></i></div>
-                    <div class="text-white font-outfit text-xl font-bold tracking-wide drop-shadow">AHTAO MU-SPACE</div>
+                    <div class="text-white font-outfit text-xl font-bold tracking-wide drop-shadow dyn-site-title">AHTAO MU-SPACE</div>
                     <div class="w-8"></div>
                 </div>
                 <div class="text-center mb-2 z-10 relative">
@@ -303,7 +291,7 @@
 
             <div class="px-5 -mt-6 relative z-10 pb-12 flex flex-col items-center justify-center min-h-[50vh]">
                 <div class="bg-white/80 backdrop-blur-md rounded-2xl p-4 mb-4 text-center border border-purple-100 shadow-sm w-full max-w-[340px]">
-                    <p id="contact-greeting-text" class="text-xs font-bold text-brand-subtext leading-relaxed">✨ แม่หมอพร้อมตอบแชทและดูแลคุณลูกค้านะคะ ทักมาสอบถามหรือจองคิวได้เลยค่ะ 💖</p>
+                    <p id="contact-greeting-text" class="text-xs font-bold text-brand-subtext leading-relaxed">กำลังโหลดข้อมูลติดต่อ...</p>
                 </div>
 
                 <div class="bg-[#faf5ff] rounded-[32px] shadow-app border border-purple-100 p-7 w-full max-w-[340px] flex flex-col items-center gap-4">
@@ -354,7 +342,7 @@
         </div>
     </div>
 
-    <!-- ADMIN UPLOAD REVIEW MODAL (อัปโหลดรูปแคปแชท แอดมิน) -->
+    <!-- ADMIN UPLOAD REVIEW MODAL -->
     <div id="admin-upload-modal" class="fixed inset-0 bg-black/85 z-[100000] hidden flex items-center justify-center p-4 backdrop-blur-sm">
         <div class="bg-white rounded-[1.5rem] p-5 w-full max-w-sm border-4 border-[#d946ef] shadow-2xl relative text-left">
             <div class="flex justify-between items-center border-b-2 dashed border-[#e9d5ff] pb-2 mb-3">
@@ -371,7 +359,6 @@
                         <option value="เว็บไซต์">💻 เว็บไซต์</option>
                     </select>
                 </div>
-                <!-- เพิ่มช่องทางสำหรับแอดมิน -->
                 <div>
                     <label class="font-bold">ช่องทางที่ติดต่อ *</label>
                     <select id="adm-source" class="w-full p-2 border rounded-lg mt-1">
@@ -399,25 +386,6 @@
         </div>
     </div>
 
-    <!-- ADMIN SETTINGS MODAL (ตั้งค่าหน้าเว็บ & ลิงก์โซเชียล) -->
-    <div id="admin-settings-modal" class="fixed inset-0 bg-black/85 z-[100000] hidden flex items-center justify-center p-4 backdrop-blur-sm">
-        <div class="bg-white rounded-[1.5rem] p-5 w-full max-w-sm border-4 border-purple-600 shadow-2xl relative text-left max-h-[85vh] overflow-y-auto custom-scrollbar">
-            <div class="flex justify-between items-center border-b-2 dashed border-[#e9d5ff] pb-2 mb-3">
-                <h2 class="text-purple-700 m-0 text-sm font-bold">⚙️ ตั้งค่าหน้าเว็บ & โซเชียล (แอดมิน)</h2>
-                <button onclick="closeAdminSettingsModal()" class="text-gray-400 text-2xl">&times;</button>
-            </div>
-            <div class="space-y-3 text-xs">
-                <div><label class="font-bold">ข้อความทักทายหน้าติดต่อ</label><textarea id="set-greeting" rows="2" class="w-full p-2 border rounded-lg mt-1" placeholder="แม่หมอพร้อมตอบแชท..."></textarea></div>
-                <div><label class="font-bold">ลิงก์ Facebook</label><input type="text" id="set-fb" class="w-full p-2 border rounded-lg mt-1"></div>
-                <div><label class="font-bold">ลิงก์ Line OA</label><input type="text" id="set-line" class="w-full p-2 border rounded-lg mt-1"></div>
-                <div><label class="font-bold">ลิงก์ Instagram</label><input type="text" id="set-ig" class="w-full p-2 border rounded-lg mt-1"></div>
-                <div><label class="font-bold">ลิงก์ TikTok (ถ้ามี)</label><input type="text" id="set-tiktok" class="w-full p-2 border rounded-lg mt-1" placeholder="https://tiktok.com/..."></div>
-                <div><label class="font-bold">ลิงก์ Discord (ถ้ามี)</label><input type="text" id="set-discord" class="w-full p-2 border rounded-lg mt-1" placeholder="https://discord.gg/..."></div>
-                <button onclick="saveAdminSettings()" class="w-full bg-purple-600 text-white font-bold py-3 rounded-xl mt-2">💾 บันทึกการตั้งค่าหน้าเว็บ</button>
-            </div>
-        </div>
-    </div>
-
     <!-- LIGHTBOX MODAL -->
     <div id="lightbox-modal" class="fixed inset-0 bg-black/90 z-[100001] hidden flex items-center justify-center p-4 cursor-pointer" onclick="closeLightbox()">
         <img id="lightbox-img" src="" alt="Zoom" class="max-w-full max-h-[90vh] rounded-2xl object-contain shadow-2xl">
@@ -425,74 +393,74 @@
 
     <!-- SCRIPTING -->
     <script>
-        // *** เอา URL ตัวใหม่ล่าสุดที่ได้จากการ Deploy Apps Script มาใส่ตรงนี้นะครับ ***
+        // *** ใส่ URL Apps Script ของคุณตรงนี้นะครับ ***
         const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxwHh6pIodH8FpFFlnkWvVu6LMJ_e93iA4-ypmj9D1PfiCqZxADAoBcn7DFzBLkv_B8/exec';
         
         let allReviewsData = [];
         let isAdminLoggedIn = false;
         let tempBase64Image = '';
 
-        // ข้อมูลตั้งค่าหน้าเว็บเริ่มต้น
-        let siteSettings = {
-            greeting: "✨ แม่หมอพร้อมตอบแชทและดูแลคุณลูกค้านะคะ ทักมาสอบถามหรือจองคิวได้เลยค่ะ 💖",
-            fb: "https://www.facebook.com/profile.php?id=61594504356531",
-            line: "https://lin.ee/WgEAeFx",
-            ig: "https://www.instagram.com/artaoty2",
-            tiktok: "",
-            discord: ""
-        };
-
         document.addEventListener('DOMContentLoaded', () => {
             loadSavedSettings();
             fetchReviews();
         });
 
-        // ดึงการตั้งค่าจาก Google Sheets
+        // ดึงการตั้งค่าและข้อความทั้งหมดจาก Google Sheets (แท็บ Settings)
         async function loadSavedSettings() {
             try {
                 const response = await fetch(SCRIPT_URL + '?action=getSettings&t=' + Date.now());
                 if(response.ok) {
                     const data = await response.json();
-                    siteSettings = {
-                        greeting: data.greeting || siteSettings.greeting,
-                        fb: data.fb || siteSettings.fb,
-                        line: data.line || siteSettings.line,
-                        ig: data.ig || siteSettings.ig,
-                        tiktok: data.tiktok || "",
-                        discord: data.discord || ""
-                    };
+                    
+                    // อัปเดตข้อความบนหน้าเว็บตาม Key จาก Sheet
+                    if(data.site_title) {
+                        document.querySelectorAll('.dyn-site-title').forEach(el => el.innerText = data.site_title);
+                    }
+                    if(data.site_subtitle) {
+                        const el = document.getElementById('dyn-site-subtitle');
+                        if(el) el.innerText = data.site_subtitle;
+                    }
+                    if(data.hero_title) {
+                        const el = document.getElementById('dyn-hero-title');
+                        if(el) el.innerText = data.hero_title;
+                    }
+                    if(data.hero_desc) {
+                        const el = document.getElementById('dyn-hero-desc');
+                        if(el) el.innerText = data.hero_desc;
+                    }
+                    if(data.contact_greeting) {
+                        const el = document.getElementById('contact-greeting-text');
+                        if(el) el.innerText = data.contact_greeting;
+                    }
+
+                    // อัปเดตลิงก์โซเชียล
+                    if(data.fb) document.getElementById('link-fb').href = data.fb;
+                    if(data.line) document.getElementById('link-line').href = data.line;
+                    if(data.ig) document.getElementById('link-ig').href = data.ig;
+                    
+                    const extraBox = document.getElementById('extra-social-box');
+                    const tkBtn = document.getElementById('link-tiktok');
+                    const dcBtn = document.getElementById('link-discord');
+                    let hasExtra = false;
+                    
+                    if(data.tiktok && data.tiktok.trim() !== "") {
+                        tkBtn.href = data.tiktok;
+                        tkBtn.classList.remove('hidden');
+                        hasExtra = true;
+                    } else { tkBtn.classList.add('hidden'); }
+
+                    if(data.discord && data.discord.trim() !== "") {
+                        dcBtn.href = data.discord;
+                        dcBtn.classList.remove('hidden');
+                        hasExtra = true;
+                    } else { dcBtn.classList.add('hidden'); }
+
+                    if(hasExtra) extraBox.classList.remove('hidden');
+                    else extraBox.classList.add('hidden');
                 }
             } catch(e) {
                 console.error("โหลดการตั้งค่าจาก Sheet ไม่สำเร็จ", e);
             }
-            applySettingsToDOM();
-        }
-
-        function applySettingsToDOM() {
-            document.getElementById('contact-greeting-text').innerText = siteSettings.greeting;
-            document.getElementById('link-fb').href = siteSettings.fb;
-            document.getElementById('link-line').href = siteSettings.line;
-            document.getElementById('link-ig').href = siteSettings.ig;
-
-            const extraBox = document.getElementById('extra-social-box');
-            const tkBtn = document.getElementById('link-tiktok');
-            const dcBtn = document.getElementById('link-discord');
-            
-            let hasExtra = false;
-            if(siteSettings.tiktok && siteSettings.tiktok.trim() !== "") {
-                tkBtn.href = siteSettings.tiktok;
-                tkBtn.classList.remove('hidden');
-                hasExtra = true;
-            } else { tkBtn.classList.add('hidden'); }
-
-            if(siteSettings.discord && siteSettings.discord.trim() !== "") {
-                dcBtn.href = siteSettings.discord;
-                dcBtn.classList.remove('hidden');
-                hasExtra = true;
-            } else { dcBtn.classList.add('hidden'); }
-
-            if(hasExtra) extraBox.classList.remove('hidden');
-            else extraBox.classList.add('hidden');
         }
 
         async function fetchReviews() {
@@ -551,11 +519,10 @@
             const reversed = [...reviews].reverse();
             reversed.forEach(item => {
                 let cat = item.category || 'ดูดวง';
-                let badgeBg = '#fffbeb'; let badgeCol = '#d97706'; // ดูดวง (เหลือง)
-                if(cat === 'วอลเปเปอร์') { badgeBg = '#f0fdf4'; badgeCol = '#10b981'; } // วอลเปเปอร์ (เขียว)
-                else if(cat === 'เว็บไซต์') { badgeBg = '#faf5ff'; badgeCol = '#c026d3'; } // เว็บไซต์ (ม่วง/ชมพู)
+                let badgeBg = '#fffbeb'; let badgeCol = '#d97706'; 
+                if(cat === 'วอลเปเปอร์') { badgeBg = '#f0fdf4'; badgeCol = '#10b981'; } 
+                else if(cat === 'เว็บไซต์') { badgeBg = '#faf5ff'; badgeCol = '#c026d3'; } 
 
-                // ป้ายบอกช่องทาง (Source)
                 let sourceText = item.source || '';
                 let sourceBadge = sourceText ? `<span class="bg-gray-100 text-gray-600 text-[9px] px-1.5 py-0.5 rounded font-bold ml-1">${sourceText}</span>` : '';
 
@@ -622,7 +589,7 @@
             const name = document.getElementById('public-name').value.trim();
             const category = document.getElementById('public-category').value;
             const stars = document.getElementById('public-stars').value;
-            const source = document.getElementById('public-source').value; // ดึงข้อมูลช่องทาง
+            const source = document.getElementById('public-source').value; 
             const message = document.getElementById('public-message').value.trim();
             const btn = document.getElementById('submit-btn');
 
@@ -666,7 +633,7 @@
                 isAdminLoggedIn = true;
                 document.getElementById('admin-badge').classList.remove('hidden');
                 document.getElementById('admin-action-bar').classList.remove('hidden');
-                alert('ยินดีต้อนรับอาเต๋า! เปิดโหมดแอดมินสำเร็จ');
+                alert('ยินดีต้อนรับอาเต๋า! เปิดโหมดแอดมินสำเร็จ (ตอนนี้การตั้งค่าเว็บทั้งหมดต้องแก้ผ่าน Google Sheets นะครับ)');
             } else if(pwd !== null) {
                 alert('รหัสผ่านไม่ถูกต้อง!');
             }
@@ -675,59 +642,11 @@
         function openAdminUploadModal() { document.getElementById('admin-upload-modal').style.display = 'flex'; }
         function closeAdminUploadModal() { document.getElementById('admin-upload-modal').style.display = 'none'; }
 
-        function openAdminSettingsModal() {
-            document.getElementById('set-greeting').value = siteSettings.greeting;
-            document.getElementById('set-fb').value = siteSettings.fb;
-            document.getElementById('set-line').value = siteSettings.line;
-            document.getElementById('set-ig').value = siteSettings.ig;
-            document.getElementById('set-tiktok').value = siteSettings.tiktok || "";
-            document.getElementById('set-discord').value = siteSettings.discord || "";
-            document.getElementById('admin-settings-modal').style.display = 'flex';
-        }
-        function closeAdminSettingsModal() { document.getElementById('admin-settings-modal').style.display = 'none'; }
-
-        async function saveAdminSettings() {
-            const btn = document.querySelector('#admin-settings-modal button[onclick="saveAdminSettings()"]');
-            const originalText = btn.innerHTML;
-            
-            btn.innerHTML = '💾 กำลังบันทึกข้อมูล...';
-            btn.disabled = true;
-
-            siteSettings.greeting = document.getElementById('set-greeting').value.trim();
-            siteSettings.fb = document.getElementById('set-fb').value.trim();
-            siteSettings.line = document.getElementById('set-line').value.trim();
-            siteSettings.ig = document.getElementById('set-ig').value.trim();
-            siteSettings.tiktok = document.getElementById('set-tiktok').value.trim();
-            siteSettings.discord = document.getElementById('set-discord').value.trim();
-
-            try {
-                const payload = {
-                    type: 'settings',
-                    data: siteSettings
-                };
-                
-                await fetch(SCRIPT_URL, { 
-                    method: 'POST', 
-                    headers: { 'Content-Type': 'text/plain;charset=utf-8' }, 
-                    body: JSON.stringify(payload) 
-                });
-                
-                applySettingsToDOM();
-                closeAdminSettingsModal();
-                alert('💾 บันทึกการตั้งค่าหน้าเว็บลง Google Sheet สำเร็จ!');
-            } catch(e) {
-                alert('เกิดข้อผิดพลาดในการบันทึกการตั้งค่า');
-            } finally {
-                btn.innerHTML = originalText;
-                btn.disabled = false;
-            }
-        }
-
         async function uploadAdminReview() {
             const name = document.getElementById('adm-name').value.trim();
             const category = document.getElementById('adm-category').value;
             const stars = document.getElementById('adm-stars').value;
-            const source = document.getElementById('adm-source').value; // ดึงข้อมูลช่องทาง
+            const source = document.getElementById('adm-source').value; 
             const message = document.getElementById('adm-message').value.trim();
             const fileInput = document.getElementById('adm-image-file');
 
